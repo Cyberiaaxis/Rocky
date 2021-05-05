@@ -33,7 +33,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-
+        // dd($request->all());
         $this->validateInputs($request);
 
 
@@ -48,9 +48,10 @@ class LoginController extends Controller
 
     public function validateInputs($request)
     {
+        // dd($request->all());
         $request->validate([
-            'email' => ['email', 'required'],
-            'password' => ['required']
+            'json.email' => ['email', 'required'],
+            'json.password' => ['required']
         ]);
     }
 

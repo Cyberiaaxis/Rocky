@@ -1,60 +1,22 @@
-import ky from "ky";
-import { useCallback,useState } from "react";
+import ky from 'ky';
 
-export default function useFetchApi() {
-    const [status, setStatus] = useState('idle')
-    const [hasError, setErrors] = useState(false)
-    const [responseData, setResponseData] = useState(null)
-
-    const [result, setResult] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+const useFetchApi = async (url, params) => {
+    console.log(params);
+    const options = {
+        method: params.method,
+        body: JSON.stringify({
+            json: params.data,
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    };
     
-    const SELECTION_METHOD = {
-        post: ky.post(Url, options).json(),
-        get: ky.get(Url, options).json(),
-      };
+    const baseURL = 'https://api.rockwood.test/api/' + url;
 
-    const api = useCallback(async (url, options = {}) => {
+    const jsonResponse = await ky(baseURL, options).json();
 
-        if (!url) throw new Error('URL required');
+    return jsonResponse;
+}
 
-        setLoading(true);
-
-        const Url  = 'https://api.rockwood.test/api/'+url;
-
-        if (options.method == "post") {
-            await ky.post(Url, options)
-                .then((res) => {
-                    const result = res.data;
-                    setResult(result);
-                })
-                .catch((error) => {
-                    console.log(error);
-                    if (error.response) {
-                        setError(error.response.data);
-                    } else {
-                        console.log("error is coming");
-                    }
-                });
-        } 
-        else {
-            await ky.get(Url, options)
-                .then((res) => {
-                    const result = res.data;
-                    setResult(result);
-                })
-                .catch((error) => {
-                    if (error.response) {
-                        setError(error.response.data);
-                    } else {
-                        console.log(error);
-                    }
-                });
-        }
-        
-    }, []);
-
-    // Return 'isLoading' not the 'setIsLoading' function
-    return { result, loading, error, api };
-};
+export default useFetchApi;

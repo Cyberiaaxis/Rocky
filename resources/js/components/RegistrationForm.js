@@ -12,16 +12,17 @@ import "../styles/RegistrationForm.scss";
 export default function RegistrationForm() {
     const { register, errors, handleSubmit, clearErrors } = useForm();
     const history = useHistory();
-    const { error, result , api, loading} = useFetchApi();
+    // const { error, result , api, loading} = useFetchApi();
     const url = 'register'
     const onSubmit = (res) => {
-         api(url,{method: 'post',data: res});
+        console.log(res);
+        //  useFetchApi(url,{method: 'post', res});
 
-         if(!error){
-            return 'activate your account';
-         }
+        //  if(!error){
+        //     return 'activate your account';
+        //  }
 
-         console.log(res);
+        //  console.log(res);
     };
     return (<>
             <form className="" method="post" onSubmit={handleSubmit(onSubmit)}>

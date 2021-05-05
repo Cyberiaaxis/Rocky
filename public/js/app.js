@@ -10282,6 +10282,18 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -10301,19 +10313,20 @@ function LoginForm() {
       handleSubmit = _useForm.handleSubmit,
       clearErrors = _useForm.clearErrors;
 
-  var url = 'login';
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      state = _useState2[0],
+      setState = _useState2[1];
 
-  var _useFetchApi = (0,_libraries_useFetchApi__WEBPACK_IMPORTED_MODULE_4__.default)(),
-      error = _useFetchApi.error,
-      result = _useFetchApi.result,
-      api = _useFetchApi.api,
-      loading = _useFetchApi.loading;
+  var url = 'login'; // const { error, result , api, loading} = useFetchApi();
 
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useHistory)();
 
-  var onSubmit = function onSubmit(res) {
-    console.log(res); //  api(url,{method: 'post',data: res});
-    //  if(!error){
+  var onSubmit = function onSubmit(data) {
+    console.log((0,_libraries_useFetchApi__WEBPACK_IMPORTED_MODULE_4__.default)('auth/login', {
+      method: 'post',
+      data: data
+    })); //  if(!error){
     //     return history.push('/dashboard');
     //  }
     //  console.log(res);
@@ -10333,9 +10346,9 @@ function LoginForm() {
         className: "form-inline",
         method: "post",
         onSubmit: handleSubmit(onSubmit),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           className: "form-group",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "input-group",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
               className: "form-addon",
@@ -10350,12 +10363,10 @@ function LoginForm() {
             }, register("email", {
               required: true
             })))]
-          }), errors != undefined && errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-            children: "This field is required"
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           className: "form-group",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "input-group",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
               className: "form-addon",
@@ -10371,9 +10382,7 @@ function LoginForm() {
             }, register("password", {
               required: true
             })))]
-          }), errors != undefined && errors.password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-            children: "This field is required"
-          })]
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           className: "form-group",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
@@ -10385,8 +10394,6 @@ function LoginForm() {
               size: "xs"
             })
           })
-        }), JSON.stringify(error.errors) && error.errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-          children: error.errors.email
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
         className: "bottom",
@@ -10396,12 +10403,17 @@ function LoginForm() {
           "data-target": "#registration",
           children: "Create Account"
         })
-      }), loading && JSON.stringify(result)]
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Modal__WEBPACK_IMPORTED_MODULE_5__.default, {
       body: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
         children: "Forget"
       }),
       id: "forget"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Modal__WEBPACK_IMPORTED_MODULE_5__.default, {
+      body: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_RegistrationForm__WEBPACK_IMPORTED_MODULE_6__.default, {})
+      }),
+      id: "registration"
     })]
   });
 }
@@ -10687,27 +10699,16 @@ function RegistrationForm() {
       handleSubmit = _useForm.handleSubmit,
       clearErrors = _useForm.clearErrors;
 
-  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
-
-  var _useFetchApi = (0,_libraries_useFetchApi__WEBPACK_IMPORTED_MODULE_3__.default)(),
-      error = _useFetchApi.error,
-      result = _useFetchApi.result,
-      api = _useFetchApi.api,
-      loading = _useFetchApi.loading;
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)(); // const { error, result , api, loading} = useFetchApi();
 
   var url = 'register';
 
   var onSubmit = function onSubmit(res) {
-    api(url, {
-      method: 'post',
-      data: res
-    });
-
-    if (!error) {
-      return 'activate your account';
-    }
-
-    console.log(res);
+    console.log(res); //  useFetchApi(url,{method: 'post', res});
+    //  if(!error){
+    //     return 'activate your account';
+    //  }
+    //  console.log(res);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
@@ -10816,146 +10817,58 @@ function RegistrationForm() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ useFetchApi)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var ky__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ky */ "./node_modules/ky/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var ky__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ky */ "./node_modules/ky/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-
-function useFetchApi() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('idle'),
-      _useState2 = _slicedToArray(_useState, 2),
-      status = _useState2[0],
-      setStatus = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      hasError = _useState4[0],
-      setErrors = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null),
-      _useState6 = _slicedToArray(_useState5, 2),
-      responseData = _useState6[0],
-      setResponseData = _useState6[1];
-
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-      _useState8 = _slicedToArray(_useState7, 2),
-      result = _useState8[0],
-      setResult = _useState8[1];
-
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      loading = _useState10[0],
-      setLoading = _useState10[1];
-
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
-      _useState12 = _slicedToArray(_useState11, 2),
-      error = _useState12[0],
-      setError = _useState12[1];
-
-  var SELECTION_METHOD = {
-    post: ky__WEBPACK_IMPORTED_MODULE_2__.default.post(Url, options).json(),
-    get: ky__WEBPACK_IMPORTED_MODULE_2__.default.get(Url, options).json()
-  };
-  var api = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)( /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(url) {
-      var options,
-          Url,
-          _args = arguments;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              options = _args.length > 1 && _args[1] !== undefined ? _args[1] : {};
-
-              if (url) {
-                _context.next = 3;
-                break;
+var useFetchApi = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(url, params) {
+    var options, baseURL, jsonResponse;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            console.log(params);
+            options = {
+              method: params.method,
+              body: JSON.stringify({
+                json: params.data
+              }),
+              headers: {
+                'Content-type': 'application/json; charset=UTF-8'
               }
+            };
+            baseURL = 'https://api.rockwood.test/api/' + url;
+            _context.next = 5;
+            return (0,ky__WEBPACK_IMPORTED_MODULE_1__.default)(baseURL, options).json();
 
-              throw new Error('URL required');
+          case 5:
+            jsonResponse = _context.sent;
+            return _context.abrupt("return", jsonResponse);
 
-            case 3:
-              setLoading(true);
-              Url = 'https://api.rockwood.test/api/' + url;
-
-              if (!(options.method == "post")) {
-                _context.next = 10;
-                break;
-              }
-
-              _context.next = 8;
-              return ky__WEBPACK_IMPORTED_MODULE_2__.default.post(Url, options).then(function (res) {
-                var result = res.data;
-                setResult(result);
-              })["catch"](function (error) {
-                console.log(error);
-
-                if (error.response) {
-                  setError(error.response.data);
-                } else {
-                  console.log("error is coming");
-                }
-              });
-
-            case 8:
-              _context.next = 12;
-              break;
-
-            case 10:
-              _context.next = 12;
-              return ky__WEBPACK_IMPORTED_MODULE_2__.default.get(Url, options).then(function (res) {
-                var result = res.data;
-                setResult(result);
-              })["catch"](function (error) {
-                if (error.response) {
-                  setError(error.response.data);
-                } else {
-                  console.log(error);
-                }
-              });
-
-            case 12:
-            case "end":
-              return _context.stop();
-          }
+          case 7:
+          case "end":
+            return _context.stop();
         }
-      }, _callee);
-    }));
+      }
+    }, _callee);
+  }));
 
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }(), []); // Return 'isLoading' not the 'setIsLoading' function
-
-  return {
-    result: result,
-    loading: loading,
-    error: error,
-    api: api
+  return function useFetchApi(_x, _x2) {
+    return _ref.apply(this, arguments);
   };
-}
-;
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useFetchApi);
 
 /***/ }),
 

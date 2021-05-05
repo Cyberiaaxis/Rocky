@@ -11,4 +11,6 @@
 */
 $router->get('/topplayerlist', 'LandingPageController@listTopPlayer');
 $router->post('auth/login', 'LoginController@login');
+$router->post('/register', 'RegistrationController@signup');
+
 

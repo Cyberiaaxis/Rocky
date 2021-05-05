@@ -1,4 +1,4 @@
-import React from 'react';
+import {useEffect, useState} from "react";
 import '../styles/LoginForm.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey, faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
@@ -10,14 +10,14 @@ import { useHistory, Link } from 'react-router-dom';
 
 export default function LoginForm() {
     const { register, errors, handleSubmit, clearErrors } = useForm();
+    const [state, setState] = useState({});
     const url = 'login';
-    const { error, result , api, loading} = useFetchApi();
+    // const { error, result , api, loading} = useFetchApi();
     const history = useHistory();
 
-    const onSubmit = (res) => {
-
-        console.log(res);
-        //  api(url,{method: 'post',data: res});
+    const onSubmit = (data) => {
+        
+         console.log(useFetchApi('auth/login',{method: 'post',data}));
 
         //  if(!error){
         //     return history.push('/dashboard');
@@ -25,6 +25,7 @@ export default function LoginForm() {
 
         //  console.log(res);
     };
+
 
     return (<>
         <div>
@@ -36,7 +37,7 @@ export default function LoginForm() {
                         
                         <input type="email" placeholder='Username'  {...register("email", { required: true })} />
                     </div>
-                    {errors !=undefined && errors.email && <span>This field is required</span>}
+                    {/* {errors !=undefined && errors.email && <span>This field is required</span>} */}
                 </div>
                 <div className="form-group">
                     <div className='input-group'>
@@ -44,17 +45,17 @@ export default function LoginForm() {
 
                         <input type="password" placeholder='Password' className='form-control' {...register("password", { required: true })} />
                     </div>
-                    {errors !=undefined && errors.password && <span>This field is required</span>}
+                    {/* {errors !=undefined && errors.password && <span>This field is required</span>} */}
                 </div>
                 <div className="form-group">
                     <button type="submit" className="btn btn-primary" ><FontAwesomeIcon icon={faArrowAltCircleRight} color='red' size="xs" /></button>
                 </div>
-                        {JSON.stringify(error.errors) && error.errors.email && <span>{error.errors.email}</span>}
+                        {/* {JSON.stringify(error.errors) && error.errors.email && <span>{error.errors.email}</span>} */}
             </form>
             <p className='bottom'><Link to='/' data-toggle="modal" data-target='#registration' >Create Account</Link></p>
-            {loading && JSON.stringify(result) }
+            {/* {loading && JSON.stringify(result) } */}
         </div>
             <Modal body={<span>Forget</span>} id='forget'/>
-            {/* <Modal body={<span><RegistrationForm/></span>}  id='registration'/> */}
+            <Modal body={<span><RegistrationForm/></span>}  id='registration'/>
     </>);
 }
