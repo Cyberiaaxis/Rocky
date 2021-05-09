@@ -25,17 +25,17 @@ class RegistrationController extends Controller
      */
     public function signup(Request $request)
     {
-        dd($request);
+        // dd($request->all());
         $request->validate([
-            'json.name' => 'required|string',
-            'json.email' => 'required|string|email|unique:users',
-            'json.password' => 'required|string|confirmed'
+            'name' => 'required|string',
+            'email' => 'required|string|email|unique:users,email',
+            'password' => 'required|string|confirmed'
         ]);
 
         $user = new User([
-            'name' => $request->json['name'],
-            'email' => $request->json['email'],
-            'password' => bcrypt($request->json['password'])
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
         ]);
 
         $user->save();

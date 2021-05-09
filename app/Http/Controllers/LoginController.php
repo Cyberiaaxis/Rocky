@@ -50,8 +50,8 @@ class LoginController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'json.email' => ['email', 'required'],
-            'json.password' => ['required']
+            'email' => ['email', 'required'],
+            'password' => ['required']
         ]);
     }
 

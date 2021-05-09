@@ -1,22 +1,25 @@
 import ky from 'ky';
 
 const useFetchApi = async (url, params) => {
-    console.log(params);
     const options = {
         method: params.method,
-        body: JSON.stringify({
-            json: params.data,
-        }),
+        body: JSON.stringify(
+            params.data
+        ),
         headers: {
+            'Accept': 'application/json',
             'Content-type': 'application/json; charset=UTF-8',
         },
     };
     
-    const baseURL = 'https://api.rockwood.test/api/' + url;
+    try {
+        const baseURL = 'https://api.rockwood.test/api/' + url;
+        const jsonResponse = await ky(baseURL, options).json();
+        return jsonResponse;
+    } catch (error) {
+        return await error.response.json();
+    }
 
-    const jsonResponse = await ky(baseURL, options).json();
-
-    return jsonResponse;
 }
 
 export default useFetchApi;

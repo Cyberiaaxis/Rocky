@@ -1,5 +1,4 @@
-import React from 'react';
-// import '../styles/RegistrationForm.scss';
+import '../styles/RegistrationForm.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey, faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import { useForm } from 'react-hook-form';
@@ -7,16 +6,15 @@ import useFetchApi from '../libraries/useFetchApi';
 import { useHistory } from 'react-router-dom';
 import "../styles/RegistrationForm.scss";
 
-
-// import {  } from 'react-router-dom';
-export default function RegistrationForm() {
+const RegistrationForm = () => {
     const { register, errors, handleSubmit, clearErrors } = useForm();
     const history = useHistory();
     // const { error, result , api, loading} = useFetchApi();
     const url = 'register'
-    const onSubmit = (res) => {
-        console.log(res);
-        //  useFetchApi(url,{method: 'post', res});
+    const onSubmit = (data) => {
+        console.log("registration");
+        console.log(data);
+         useFetchApi(url,{method: 'post', data});
 
         //  if(!error){
         //     return 'activate your account';
@@ -25,7 +23,7 @@ export default function RegistrationForm() {
         //  console.log(res);
     };
     return (<>
-            <form className="" method="post" onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <div className="input-group">
                         <span className="form-addon"><FontAwesomeIcon icon={faUser} color='#63102f' size="xs" /></span>
@@ -56,3 +54,5 @@ export default function RegistrationForm() {
             </form>
     </>);
 }
+
+export default RegistrationForm;

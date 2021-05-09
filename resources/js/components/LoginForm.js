@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import '../styles/LoginForm.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey, faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
@@ -11,21 +11,21 @@ import { useHistory, Link } from 'react-router-dom';
 export default function LoginForm() {
     const { register, errors, handleSubmit, clearErrors } = useForm();
     const [state, setState] = useState({});
-    const url = 'login';
-    // const { error, result , api, loading} = useFetchApi();
     const history = useHistory();
+    const url = 'login';
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+        const  result =  await useFetchApi('auth/login',{method: 'post',data});
         
-         console.log(useFetchApi('auth/login',{method: 'post',data}));
+        if(result.user){
+            console.log(result.user);
+            history.push("/dashboard");
+        }else{
+            console.log(result.errors.email[0]);
+            setState(result.errors.email[0]);            
+        }
 
-        //  if(!error){
-        //     return history.push('/dashboard');
-        //  }
-
-        //  console.log(res);
     };
-
 
     return (<>
         <div>
