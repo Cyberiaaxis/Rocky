@@ -12,14 +12,13 @@ export default function LoginForm() {
     const { register, errors, handleSubmit, clearErrors } = useForm();
     const [state, setState] = useState({});
     const history = useHistory();
-    const url = 'login';
 
     const onSubmit = async (data) => {
         const  result =  await useFetchApi('auth/login',{method: 'post',data});
         
         if(result.user){
             console.log(result.user);
-            history.push("/dashboard");
+            history.push('/dashboard');
         }else{
             console.log(result.errors.email[0]);
             setState(result.errors.email[0]);            

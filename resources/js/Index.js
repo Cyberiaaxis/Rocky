@@ -1,16 +1,15 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from "react-router-dom";
-import App from "./pages/App";
-
+import routes from "./libraries/Routes";
 import './styles/style.scss';
 import './styles/index.scss';
 import './styles/responsive.scss';
+import * as serviceWorker from './serviceWorker';
 
+const allRoutes = routes;
 
 ReactDOM.render (
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  allRoutes,
   document.getElementById('root')
 );
+
+serviceWorker.unregister();
