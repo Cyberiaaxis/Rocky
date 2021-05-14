@@ -25,10 +25,10 @@ class RegistrationController extends Controller
      */
     public function signup(Request $request)
     {
-        // dd($request->all());
+
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|string|email|unique:users,email',
+            'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed'
         ]);
 

@@ -10,7 +10,10 @@
 |
 */
 $router->get('/topplayerlist', 'LandingPageController@listTopPlayer');
-$router->post('auth/login', 'LoginController@login');
+$router->post('/auth/login', 'LoginController@login');
 $router->post('/register', 'RegistrationController@signup');
+$router->group(['middleware' => ['auth:api', 'verified']], function($router){
+    $router->get('/home', 'HomeController@index');
+});
 
 

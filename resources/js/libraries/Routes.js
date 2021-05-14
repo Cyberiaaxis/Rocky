@@ -4,7 +4,8 @@ import Dashboard from "../pages/Dashboard";
 import Attack from "../pages/Attack";
 import App from "../pages/App";
 // import Chat from "../components/Chat";
-import Login from "../components/Login";
+import Login from "../components/LoginForm";
+import useStore from 'zustand'
 
 
 const routes = (
@@ -14,13 +15,13 @@ const routes = (
             <App />
         </Route>
         <Route path="/login">
-            // <Login />
+             <Login />
         </Route>
         <Route path="/dashboard">
-            // <Dashboard />
+             <Dashboard />
         </Route>
         <Route path="/attack">
-            // <Attack />
+             {/* <Attack /> */}
         </Route>
         {/* <Route path="/chat" component={Chat} /> */}
     </Switch>

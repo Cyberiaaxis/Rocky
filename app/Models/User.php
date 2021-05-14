@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Passport\HasApiTokens;
 
+// use Chatter\Core\Traits\CanDiscuss;
+// use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -126,3 +128,4 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 }
+
