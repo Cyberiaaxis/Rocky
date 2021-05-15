@@ -7,7 +7,6 @@ import useFetchApi from '../libraries/useFetchApi';
 import Modal from "./Modal";
 import RegistrationForm from "./RegistrationForm";
 import { useHistory, Link } from 'react-router-dom';
-import create from 'zustand'
 
 export default function LoginForm() {
     const { register, errors, handleSubmit, clearErrors } = useForm();
@@ -18,12 +17,12 @@ export default function LoginForm() {
         const  result =  await useFetchApi('auth/login',{method: 'post',data});
         
         if(result.user){
-            
-            const useStore = create(set => ({
-                status: () => set((state) => ({ user: result.user, isLoggedIn: true })),
-              }))
-
-            // console.log(result.user);
+            const userDetails = {
+                userId: result.user.id,
+                access_token: result.access_token 
+            }; 
+            localStorage.setItem('userDetails', JSON.stringify(userDetails));
+            // console.log(result.user.id);
             history.push('/dashboard');
         }else{
             console.log(result.errors.email[0]);
