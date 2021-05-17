@@ -437,9 +437,16 @@ const Footer = ({ section, setSection }) => {
     );
 };
 
-export default function Dashboard() {
+const Dashboard = (props) => {
     const classes = useStyles();
     const [section, setSection] = useState("home");
+    
+    // useEffect( async (props) => {
+    //     const data = props.id; 
+    //     const  result =  await useFetchApi('home',{method: 'post',data});
+    // }
+        
+    // useEffect(() => { // do stuff }, [])
 
     return (
         <div className={classes.root}>
@@ -470,3 +477,4 @@ export default function Dashboard() {
         </div>
     );
 }
+export default Dashboard;
