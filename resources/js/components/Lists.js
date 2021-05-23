@@ -13,17 +13,17 @@ const Lists = () => {
     setStatus('fetching')
     await ky('https://api.rockwood.test/api/topplayerlist').json()
       .then((response) => {
-        console.log(response?.length);
+        // console.log(response?.length);
         if (response?.length) {
           setResponseData(response)
-          console.log('setResponseData: ', response)
+          // console.log('setResponseData: ', response)
         }
         setStatus('fetched')
       })
       .catch((error) => {
         setStatus('failed')
         setErrors(error)
-        console.error(error)
+        // console.error(error)
       })
   }
 

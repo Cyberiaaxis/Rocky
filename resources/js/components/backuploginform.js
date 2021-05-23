@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey, faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from 'react-hook-form';
 import useFetchApi from '../libraries/useFetchApi';
+import useStore from '../libraries/Store';
 import Modal from "./Modal";
 import RegistrationForm from "./RegistrationForm";
 import { useHistory, Link } from 'react-router-dom';
@@ -11,22 +12,24 @@ import { useHistory, Link } from 'react-router-dom';
 export default function LoginForm() {
     const { register, errors, handleSubmit, clearErrors } = useForm();
     const [state, setState] = useState({});
+    const currentUserId = useStore((state) => state.currentUserId);
+    const [currentUserId, setCurrentUserId] = useState("");
+    const [currentAccessToken, setCurrentAccessToken] = useState("");
+    const { setAccessToken, setUserId } = useStore();
     const history = useHistory();
 
     const onSubmit = async (data) => {
         const  result =  await useFetchApi('auth/login',{method: 'post',data});
-        // console.log(result.access_token);
-
+        
         if(result.user){
-            const resultUser = {
-                userId: result.user.id,
-                accessToken: result.access_token,
-                loggedIn: true 
-            }
+            setCurrentUserId(result.user.id);
+            setCurrentAccessToken(result.access_token); 
+            setUserId(currentUserId);
+            setAccessToken(currentAccessToken);
 
-            localStorage.setItem('userDetails', JSON.stringify(resultUser));
-            history.push('/dashboard');
-
+            // localStorage.setItem('userDetails', JSON.stringify(userDetails));
+            // console.log(result.user.id);
+            // history.push('/dashboard');
         }else{
             console.log(result.errors.email[0]);
             setState(result.errors.email[0]);            

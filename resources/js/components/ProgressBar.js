@@ -4,14 +4,12 @@ import "../styles/ProgressBar.scss";
 import { Box } from "@material-ui/core";
 
 
-export default function ProgressBar(props) {
-
-    const classname = (props.type) ? 'bar bar-'+ props.type : 'bar';
+const ProgressBar = (props) => {
 
     return (
         <>
             <div>
-                <Box className={classname} data-label={props.label}>
+                <Box className="bar" data-label={props.label}>
                     <Box
                         className="fill"
                         style={{
@@ -32,3 +30,5 @@ ProgressBar.propTypes = {
 ProgressBar.defaultProps = {
     percentComplete: 20,
 };
+
+export default ProgressBar;

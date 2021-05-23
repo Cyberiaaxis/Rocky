@@ -28401,18 +28401,15 @@ var Lists = function Lists() {
               setStatus('fetching');
               _context.next = 4;
               return (0,ky__WEBPACK_IMPORTED_MODULE_5__.default)('https://api.rockwood.test/api/topplayerlist').json().then(function (response) {
-                console.log(response === null || response === void 0 ? void 0 : response.length);
-
+                // console.log(response?.length);
                 if (response !== null && response !== void 0 && response.length) {
-                  setResponseData(response);
-                  console.log('setResponseData: ', response);
+                  setResponseData(response); // console.log('setResponseData: ', response)
                 }
 
                 setStatus('fetched');
               })["catch"](function (error) {
                 setStatus('failed');
-                setErrors(error);
-                console.error(error);
+                setErrors(error); // console.error(error)
               });
 
             case 4:
@@ -28538,7 +28535,7 @@ function LoginForm() {
 
   var onSubmit = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
-      var result, userDetails;
+      var result, resultUser;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -28552,13 +28549,14 @@ function LoginForm() {
             case 2:
               result = _context.sent;
 
+              // console.log(result.access_token);
               if (result.user) {
-                userDetails = {
+                resultUser = {
                   userId: result.user.id,
-                  access_token: result.access_token
+                  accessToken: result.access_token,
+                  loggedIn: true
                 };
-                localStorage.setItem('userDetails', JSON.stringify(userDetails)); // console.log(result.user.id);
-
+                localStorage.setItem('userDetails', JSON.stringify(resultUser));
                 history.push('/dashboard');
               } else {
                 console.log(result.errors.email[0]);
@@ -28910,7 +28908,7 @@ function Navbar() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ ProgressBar)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
@@ -28924,12 +28922,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function ProgressBar(props) {
-  var classname = props.type ? 'bar bar-' + props.type : 'bar';
+
+var ProgressBar = function ProgressBar(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
-        className: classname,
+        className: "bar",
         "data-label": props.label,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
           className: "fill",
@@ -28941,13 +28939,15 @@ function ProgressBar(props) {
       })
     })
   });
-}
+};
+
 ProgressBar.propTypes = {
   percentComplete: prop_types__WEBPACK_IMPORTED_MODULE_1__.number
 };
 ProgressBar.defaultProps = {
   percentComplete: 20
 };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProgressBar);
 
 /***/ }),
 
@@ -29671,82 +29671,90 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _pages_Dashboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pages/Dashboard */ "./resources/js/pages/Dashboard.js");
-/* harmony import */ var _pages_Attack__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/Attack */ "./resources/js/pages/Attack.js");
-/* harmony import */ var _pages_App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/App */ "./resources/js/pages/App.js");
-/* harmony import */ var _components_LoginForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/LoginForm */ "./resources/js/components/LoginForm.js");
-/* harmony import */ var zustand__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! zustand */ "./node_modules/zustand/esm/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _pages_Dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/Dashboard */ "./resources/js/pages/Dashboard.js");
+/* harmony import */ var _pages_Attack__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/Attack */ "./resources/js/pages/Attack.js");
+/* harmony import */ var _pages_App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/App */ "./resources/js/pages/App.js");
+/* harmony import */ var _components_LoginForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/LoginForm */ "./resources/js/components/LoginForm.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
  // import Chat from "../components/Chat";
 
+ // localStorage.clear();
 
 
 
 
-
-
-var loginStatus = function loginStatus() {
-  var _localStorage$getItem = localStorage.getItem('userDetails'),
-      userId = _localStorage$getItem.userId,
-      access_token = _localStorage$getItem.access_token;
-
-  var loginStatus = true;
-
-  if (!access_token) {
-    localStorage.removeItem('userDetails');
-    loginStatus = false;
-  }
-
-  return {
-    isLogged: loginStatus,
-    userId: userId
-  };
-};
-
-var useStore = (0,zustand__WEBPACK_IMPORTED_MODULE_5__.default)(function (set) {
-  return {
-    userId: function userId() {
-      return set(function (state) {
-        return {
-          userId: loginStatus().userId
-        };
-      });
-    },
-    isLoggedIn: function isLoggedIn() {
-      return set(function (state) {
-        return {
-          isLoggedIn: loginStatus().isLogged
-        };
-      });
-    }
-  };
-});
 
 var Routes = function Routes() {
-  var _useStore = useStore(),
-      userId = _useStore.userId,
-      isLoggedIn = _useStore.isLoggedIn;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      loggedIn = _useState2[0],
+      setLoggedIn = _useState2[1];
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Switch, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      userId = _useState4[0],
+      setUserId = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState6 = _slicedToArray(_useState5, 2),
+      accessToken = _useState6[0],
+      setAccessToken = _useState6[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    function checkUserData() {
+      if (localStorage.getItem('userDetails') !== undefined) {
+        var _JSON$parse = JSON.parse(localStorage.getItem('userDetails')),
+            _userId = _JSON$parse.userId,
+            _accessToken = _JSON$parse.accessToken,
+            _loggedIn = _JSON$parse.loggedIn;
+
+        setLoggedIn(_loggedIn);
+        setUserId(_userId);
+        setAccessToken(_accessToken);
+      }
+
+      ;
+    }
+
+    checkUserData();
+  }, []);
+  console.log(loggedIn);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Switch, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
           path: "/",
           exact: true,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_pages_App__WEBPACK_IMPORTED_MODULE_2__.default, {})
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
-          path: "/dashboard",
-          children: isLoggedIn ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_pages_Dashboard__WEBPACK_IMPORTED_MODULE_0__.default, {
+          children: loggedIn ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_pages_Dashboard__WEBPACK_IMPORTED_MODULE_1__.default, {
             id: userId
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Redirect, {
-            to: "/login"
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Redirect, {
+            to: "/"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+          path: "/dashboard",
+          children: loggedIn ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_pages_Dashboard__WEBPACK_IMPORTED_MODULE_1__.default, {
+            id: userId
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_pages_App__WEBPACK_IMPORTED_MODULE_3__.default, {})
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
           path: "/attack"
         })]
       })
@@ -30671,20 +30679,19 @@ var Attack = function Attack() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ Dashboard)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Badge/Badge.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Menu/Menu.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/MenuItem/MenuItem.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Avatar/Avatar.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Popover/Popover.js");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/MenuList/MenuList.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/MenuItem/MenuItem.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
 /* harmony import */ var _components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/ProgressBar */ "./resources/js/components/ProgressBar.js");
 /* harmony import */ var _components_Stats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Stats */ "./resources/js/components/Stats.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -30709,37 +30716,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var StyledBadge = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default)(function (theme) {
-  return {
-    badge: {
-      backgroundColor: "#44b700",
-      color: "#44b700",
-      boxShadow: "0 0 0 2px ".concat(theme.palette.background.paper),
-      "&::after": {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        borderRadius: "50%",
-        animation: "$ripple 1.2s infinite ease-in-out",
-        border: "1px solid currentColor",
-        content: '""'
-      }
-    },
-    "@keyframes ripple": {
-      "0%": {
-        transform: "scale(.8)",
-        opacity: 1
-      },
-      "100%": {
-        transform: "scale(2.4)",
-        opacity: 0
-      }
-    }
-  };
-})(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default);
-var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default)(function (theme) {
+var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default)(function (theme) {
   var _ref;
 
   return _ref = {
@@ -30770,220 +30747,212 @@ var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default)(funct
     overflow: "auto",
     width: "100%"
   }), _defineProperty(_ref, "startButton", {
-    color: 'green',
-    background: 'linear-gradient(to left,#E4EE0D,#FC9500)',
-    height: '4em',
-    width: '13em'
+    color: "green",
+    background: "linear-gradient(to left,#E4EE0D,#FC9500)",
+    height: "4em",
+    width: "13em"
   }), _ref;
 });
 
-var Header = function Header(_ref2) {
-  var section = _ref2.section,
-      setSection = _ref2.setSection;
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+var Header = function Header(Logout) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState2 = _slicedToArray(_useState, 2),
-      value = _useState2[0],
-      setvalue = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState4 = _slicedToArray(_useState3, 2),
-      current = _useState4[0],
-      setCurrent = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState6 = _slicedToArray(_useState5, 2),
-      anchorEl = _useState6[0],
-      setAnchorEl = _useState6[1];
+      anchorEl = _useState2[0],
+      setAnchorEl = _useState2[1];
 
   var classes = useStyles();
 
-  var handlePopoverClose = function handlePopoverClose() {
+  var handleClose = function handleClose(event) {
+    console.log(event);
     setAnchorEl(null);
-    setCurrent(null);
   };
 
   var handleClick = function handleClick(e, _popno) {
+    console.log(e.currentTarget);
     e.preventDefault();
     setAnchorEl(e.currentTarget);
-    setCurrent(e.currentTarget.getAttribute("aria-controls"));
-    setSection(e.currentTarget.getAttribute("href"));
   };
 
-  var handleChange = function handleChange(event, value) {
-    setvalue(value);
-  };
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       display: "flex",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
         paddingTop: 1,
         flexGrow: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
           className: classes.startButton,
           variant: "contained",
           color: "primary",
           size: "large",
           children: "Start"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        display: "flex",
-        margin: 1.9,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-          marginRight: 1,
-          children: "Energy"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-          marginTop: 1.2,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__.default, {
-            variant: "determinate",
-            value: 50,
-            type: "lg"
-          })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        children: ["Energy: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__.default, {
+          percentComplete: 100
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        display: "flex",
-        margin: 1.9,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-          marginRight: 1,
-          children: "Will"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-          marginTop: 1.2,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__.default, {
-            percentComplete: 75
-          })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        children: ["Will: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__.default, {
+          percentComplete: 50
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        display: "flex",
-        margin: 1.9,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-          marginRight: 1,
-          children: "HP"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-          marginTop: 1.2,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__.default, {
-            percentComplete: 75
-          })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        children: ["HP: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__.default, {
+          percentComplete: 75
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        p: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          mx: "auto",
-          "aria-controls": "simple-menu",
-          "aria-haspopup": "true",
-          onClick: handleClick,
-          onMouseOver: handleClick,
-          children: "Nothing"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        p: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          mx: "auto",
-          "aria-controls": "simple-menu2",
-          "aria-haspopup": "true",
-          onClick: handleClick,
-          onMouseOver: handleClick,
-          children: "Open Menu"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        p: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          mx: "auto",
-          "aria-controls": "simple-menu3",
-          "aria-haspopup": "true",
-          onClick: handleClick,
-          onMouseOver: handleClick,
-          children: "Open Menu"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        paddingBottom: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          "aria-controls": "simple-menu",
-          color: "secondary",
-          "aria-haspopup": "true",
-          onClick: handleClick,
-          onMouseOver: handleClick,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(StyledBadge, {
-            overlap: "circle",
-            anchorOrigin: {
-              vertical: "bottom",
-              horizontal: "right"
-            },
-            variant: "dot",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
-              alt: "Remy Sharp",
-              src: "/static/images/avatar/1.jpg"
-            })
-          })
-        })
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
-      id: "menu2Popover",
-      open: anchorEl !== null,
-      onClose: handlePopoverClose,
-      anchorEl: anchorEl,
-      children: [current === "start-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
-          children: "Crime"
-        })
-      }), current === "simple-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu" : undefined,
+        "aria-haspopup": "true",
+        onClick: handleClick,
+        onMouseOver: handleClick,
+        children: "Menu"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        id: "simple-menu",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return Logout;
+          },
           href: "profile",
-          onClick: handleClick,
           children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
-          href: "stats",
-          onClick: handleClick,
-          children: "Personal Stats"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return Logout;
+          },
+          href: "myaccount",
+          children: " My Account"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return console.log(Logout);
+          },
           href: "logout",
-          onClick: handleClick,
           children: "Logout"
         })]
-      }), current === "simple-menu2" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
-          children: "Fight"
-        })
-      }), current === "simple-menu3" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
-          children: "Bounty"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
-          children: "Non Bounty"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu1" : undefined,
+        "aria-haspopup": "true",
+        onClick: handleClick,
+        onMouseOver: handleClick,
+        children: "Open Menu"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        id: "simple-menu1",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: handleClose,
+          children: "Profile"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: handleClose,
+          children: "My account"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: handleClose,
+          children: "Logout"
         })]
-      }), current === "simple-menu4" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
-          children: "Tab 5 - Submenu 1"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
-          children: "Tab 5 - Submenu 2"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu3" : undefined,
+        "aria-haspopup": "true",
+        onClick: handleClick,
+        onMouseOver: handleClick,
+        children: "Open Menu"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        id: "simple-menu3",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: handleClose,
+          children: "Profile"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: handleClose,
+          children: "My account"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: handleClose,
+          children: "Logout"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu4" : undefined,
+        "aria-haspopup": "true",
+        onClick: handleClick,
+        onMouseOver: handleClick,
+        children: "Open Menu"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        id: "simple-menu4",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: handleClose,
+          children: "Profile"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: handleClose,
+          children: "My account"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: handleClose,
+          children: "Logout"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu5" : undefined,
+        "aria-haspopup": "true",
+        onClick: handleClick,
+        onMouseOver: handleClick,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
+          alt: "Rockwood",
+          src: "/static/images/avatar/1.jpg"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        id: "simple-menu5",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: handleClose,
+          children: "Profile"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: handleClose,
+          children: "My account Settings"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: handleClose,
+          children: "Logout"
         })]
       })]
-    })]
+    })
   });
 };
 
-var AsideLeft = function AsideLeft(_ref3) {
-  var section = _ref3.section,
-      setSection = _ref3.setSection;
+var AsideLeft = function AsideLeft(_ref2) {
+  var section = _ref2.section,
+      setSection = _ref2.setSection;
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      value = _useState4[0],
+      setvalue = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState6 = _slicedToArray(_useState5, 2),
+      current = _useState6[0],
+      setCurrent = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState8 = _slicedToArray(_useState7, 2),
-      value = _useState8[0],
-      setvalue = _useState8[1];
-
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState10 = _slicedToArray(_useState9, 2),
-      current = _useState10[0],
-      setCurrent = _useState10[1];
-
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState12 = _slicedToArray(_useState11, 2),
-      anchorEl = _useState12[0],
-      setAnchorEl = _useState12[1];
+      anchorEl = _useState8[0],
+      setAnchorEl = _useState8[1];
 
   var classes = useStyles();
 
@@ -31004,9 +30973,9 @@ var AsideLeft = function AsideLeft(_ref3) {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         "aria-controls": "location",
         className: classes.startButton,
         variant: "contained",
@@ -31014,9 +30983,9 @@ var AsideLeft = function AsideLeft(_ref3) {
         size: "large",
         children: "Location"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         mx: "auto",
         "aria-controls": "simple-menu",
         color: "secondary",
@@ -31025,9 +30994,9 @@ var AsideLeft = function AsideLeft(_ref3) {
         onMouseOver: handleClick,
         children: "Open Menu"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         mx: "auto",
         "aria-controls": "simple-menu2",
         color: "secondary",
@@ -31036,9 +31005,9 @@ var AsideLeft = function AsideLeft(_ref3) {
         onMouseOver: handleClick,
         children: "Open Menu"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         mx: "auto",
         "aria-controls": "simple-menu3",
         color: "secondary",
@@ -31054,31 +31023,31 @@ var AsideLeft = function AsideLeft(_ref3) {
       anchorEl: anchorEl,
       children: [current === "start-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Crime"
         })
       }), current === "simple-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Travel"
         })
       }), current === "simple-menu2" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Fight"
         })
       }), current === "simple-menu3" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Bounty"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Non Bounty"
         })]
       }), current === "simple-menu4" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Tab 5 - Submenu 1"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Tab 5 - Submenu 2"
         })]
       })]
@@ -31086,24 +31055,24 @@ var AsideLeft = function AsideLeft(_ref3) {
   });
 };
 
-var AsideRight = function AsideRight(_ref4) {
-  var section = _ref4.section,
-      setSection = _ref4.setSection;
+var AsideRight = function AsideRight(_ref3) {
+  var section = _ref3.section,
+      setSection = _ref3.setSection;
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState10 = _slicedToArray(_useState9, 2),
+      value = _useState10[0],
+      setvalue = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState12 = _slicedToArray(_useState11, 2),
+      current = _useState12[0],
+      setCurrent = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState14 = _slicedToArray(_useState13, 2),
-      value = _useState14[0],
-      setvalue = _useState14[1];
-
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState16 = _slicedToArray(_useState15, 2),
-      current = _useState16[0],
-      setCurrent = _useState16[1];
-
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState18 = _slicedToArray(_useState17, 2),
-      anchorEl = _useState18[0],
-      setAnchorEl = _useState18[1];
+      anchorEl = _useState14[0],
+      setAnchorEl = _useState14[1];
 
   var handlePopoverClose = function handlePopoverClose() {
     setAnchorEl(null);
@@ -31122,10 +31091,10 @@ var AsideRight = function AsideRight(_ref4) {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       marginBottom: 5,
       marginTop: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         "aria-controls": "start-menu",
         color: "secondary",
         "aria-haspopup": "true",
@@ -31133,9 +31102,9 @@ var AsideRight = function AsideRight(_ref4) {
         onMouseOver: handleClick,
         children: "Start"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         mx: "auto",
         "aria-controls": "simple-menu",
         color: "secondary",
@@ -31144,9 +31113,9 @@ var AsideRight = function AsideRight(_ref4) {
         onMouseOver: handleClick,
         children: "Open Menu"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         mx: "auto",
         "aria-controls": "simple-menu2",
         color: "secondary",
@@ -31155,9 +31124,9 @@ var AsideRight = function AsideRight(_ref4) {
         onMouseOver: handleClick,
         children: "Open Menu"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         mx: "auto",
         "aria-controls": "simple-menu3",
         color: "secondary",
@@ -31173,31 +31142,31 @@ var AsideRight = function AsideRight(_ref4) {
       anchorEl: anchorEl,
       children: [current === "start-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Crime"
         })
       }), current === "simple-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Travel"
         })
       }), current === "simple-menu2" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Fight"
         })
       }), current === "simple-menu3" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Bounty"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Non Bounty"
         })]
       }), current === "simple-menu4" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Tab 5 - Submenu 1"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Tab 5 - Submenu 2"
         })]
       })]
@@ -31205,8 +31174,8 @@ var AsideRight = function AsideRight(_ref4) {
   });
 };
 
-var Main = function Main(_ref5) {
-  var section = _ref5.section;
+var Main = function Main(_ref4) {
+  var section = _ref4.section;
   var page;
 
   switch (section) {
@@ -31241,24 +31210,24 @@ var Main = function Main(_ref5) {
   });
 };
 
-var Footer = function Footer(_ref6) {
-  var section = _ref6.section,
-      setSection = _ref6.setSection;
+var Footer = function Footer(_ref5) {
+  var section = _ref5.section,
+      setSection = _ref5.setSection;
 
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState16 = _slicedToArray(_useState15, 2),
+      value = _useState16[0],
+      setvalue = _useState16[1];
+
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState18 = _slicedToArray(_useState17, 2),
+      current = _useState18[0],
+      setCurrent = _useState18[1];
+
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState20 = _slicedToArray(_useState19, 2),
-      value = _useState20[0],
-      setvalue = _useState20[1];
-
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState22 = _slicedToArray(_useState21, 2),
-      current = _useState22[0],
-      setCurrent = _useState22[1];
-
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState24 = _slicedToArray(_useState23, 2),
-      anchorEl = _useState24[0],
-      setAnchorEl = _useState24[1];
+      anchorEl = _useState20[0],
+      setAnchorEl = _useState20[1];
 
   var handlePopoverClose = function handlePopoverClose() {
     setAnchorEl(null);
@@ -31277,12 +31246,12 @@ var Footer = function Footer(_ref6) {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
       display: "flex",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
         p: 1,
         flexGrow: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
           "aria-controls": "start-menu",
           color: "secondary",
           "aria-haspopup": "true",
@@ -31290,9 +31259,9 @@ var Footer = function Footer(_ref6) {
           onMouseOver: handleClick,
           children: "Start"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
         p: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
           mx: "auto",
           "aria-controls": "simple-menu",
           color: "secondary",
@@ -31301,9 +31270,9 @@ var Footer = function Footer(_ref6) {
           onMouseOver: handleClick,
           children: "Open Menu"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
         p: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
           mx: "auto",
           "aria-controls": "simple-menu2",
           color: "secondary",
@@ -31312,9 +31281,9 @@ var Footer = function Footer(_ref6) {
           onMouseOver: handleClick,
           children: "Open Menu"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
         p: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
           mx: "auto",
           "aria-controls": "simple-menu3",
           color: "secondary",
@@ -31331,31 +31300,31 @@ var Footer = function Footer(_ref6) {
       anchorEl: anchorEl,
       children: [current === "start-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Crime"
         })
       }), current === "simple-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Travel"
         })
       }), current === "simple-menu2" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Fight"
         })
       }), current === "simple-menu3" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Bounty"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Non Bounty"
         })]
       }), current === "simple-menu4" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         onMouseLeave: handlePopoverClose,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Tab 5 - Submenu 1"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           children: "Tab 5 - Submenu 2"
         })]
       })]
@@ -31363,31 +31332,26 @@ var Footer = function Footer(_ref6) {
   });
 };
 
-var Dashboard = function Dashboard(props) {
+function Dashboard() {
   var classes = useStyles();
 
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("home"),
-      _useState26 = _slicedToArray(_useState25, 2),
-      section = _useState26[0],
-      setSection = _useState26[1]; // useEffect( async (props) => {
-  //     const data = props.id; 
-  //     const  result =  await useFetchApi('home',{method: 'post',data});
-  // }
-  // useEffect(() => { // do stuff }, [])
-
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("home"),
+      _useState22 = _slicedToArray(_useState21, 2),
+      section = _useState22[0],
+      setSection = _useState22[1];
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: classes.root,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_13__.default, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
       container: true,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_13__.default, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
         item: true,
         xs: 12,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Header, {
           section: section,
           setSection: setSection
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_13__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
         item: true,
         xs: 2,
         sm: 1,
@@ -31396,11 +31360,11 @@ var Dashboard = function Dashboard(props) {
           section: section,
           setSection: setSection
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_13__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
         item: true,
         xs: 8,
         sm: 10,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_14__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_13__.default, {
           margin: 0,
           padding: 0,
           className: classes.paper,
@@ -31408,7 +31372,7 @@ var Dashboard = function Dashboard(props) {
             section: section
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_13__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
         item: true,
         xs: 1,
         sm: 1,
@@ -31417,7 +31381,7 @@ var Dashboard = function Dashboard(props) {
           section: section,
           setSection: setSection
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_13__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
         item: true,
         xs: 12,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Footer, {
@@ -31427,9 +31391,7 @@ var Dashboard = function Dashboard(props) {
       })]
     })
   });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dashboard);
+}
 
 /***/ }),
 
@@ -32666,7 +32628,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".bar {\n  background: #c8c6c6;\n  height: 7px;\n  width: 100%;\n  border-radius: 10px;\n  -webkit-animation: pulse 10s infinite;\n          animation: pulse 10s infinite;\n}\n\n.fill {\n  background: rgba(143, 10, 10, 0.979);\n  height: 100%;\n  max-width: 100%;\n  border-radius: 10px;\n  transform: scale(1);\n  -webkit-animation: pulse 2s infinite;\n          animation: pulse 2s infinite;\n}\n\n@-webkit-keyframes pulse {\n  0% {\n    transform: scale(0.95);\n    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);\n  }\n  70% {\n    transform: scale(1);\n    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);\n  }\n  100% {\n    transform: scale(0.95);\n    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);\n  }\n}\n\n@keyframes pulse {\n  0% {\n    transform: scale(0.95);\n    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);\n  }\n  70% {\n    transform: scale(1);\n    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);\n  }\n  100% {\n    transform: scale(0.95);\n    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);\n  }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".bar {\n  background: #c8c6c6;\n  height: 7px;\n  width: 200px;\n  border-radius: 10px;\n  -webkit-animation: pulse 10s infinite;\n          animation: pulse 10s infinite;\n}\n\n.fill {\n  background: rgba(143, 10, 10, 0.979);\n  height: 100%;\n  max-width: 100%;\n  transform: scale(1);\n  -webkit-animation: pulse 2s infinite;\n          animation: pulse 2s infinite;\n}\n\n@-webkit-keyframes pulse {\n  0% {\n    transform: scale(0.95);\n    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);\n  }\n  70% {\n    transform: scale(1);\n    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);\n  }\n  100% {\n    transform: scale(0.95);\n    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);\n  }\n}\n\n@keyframes pulse {\n  0% {\n    transform: scale(0.95);\n    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);\n  }\n  70% {\n    transform: scale(1);\n    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);\n  }\n  100% {\n    transform: scale(0.95);\n    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);\n  }\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -75002,125 +74964,6 @@ function valueEqual(a, b) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (valueEqual);
-
-
-/***/ }),
-
-/***/ "./node_modules/zustand/esm/index.js":
-/*!*******************************************!*\
-  !*** ./node_modules/zustand/esm/index.js ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-function create$1(createState) {
-  let state;
-  const listeners = new Set();
-  const setState = (partial, replace) => {
-    const nextState = typeof partial === "function" ? partial(state) : partial;
-    if (nextState !== state) {
-      const previousState = state;
-      state = replace ? nextState : Object.assign({}, state, nextState);
-      listeners.forEach((listener) => listener(state, previousState));
-    }
-  };
-  const getState = () => state;
-  const subscribeWithSelector = (listener, selector = getState, equalityFn = Object.is) => {
-    let currentSlice = selector(state);
-    function listenerToAdd() {
-      const nextSlice = selector(state);
-      if (!equalityFn(currentSlice, nextSlice)) {
-        const previousSlice = currentSlice;
-        listener(currentSlice = nextSlice, previousSlice);
-      }
-    }
-    listeners.add(listenerToAdd);
-    return () => listeners.delete(listenerToAdd);
-  };
-  const subscribe = (listener, selector, equalityFn) => {
-    if (selector || equalityFn) {
-      return subscribeWithSelector(listener, selector, equalityFn);
-    }
-    listeners.add(listener);
-    return () => listeners.delete(listener);
-  };
-  const destroy = () => listeners.clear();
-  const api = {setState, getState, subscribe, destroy};
-  state = createState(setState, getState, api);
-  return api;
-}
-
-const isSSR = typeof window === "undefined" || !window.navigator || /ServerSideRendering|^Deno\//.test(window.navigator.userAgent);
-const useIsomorphicLayoutEffect = isSSR ? react__WEBPACK_IMPORTED_MODULE_0__.useEffect : react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect;
-function create(createState) {
-  const api = typeof createState === "function" ? create$1(createState) : createState;
-  const useStore = (selector = api.getState, equalityFn = Object.is) => {
-    const [, forceUpdate] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useReducer)((c) => c + 1, 0);
-    const state = api.getState();
-    const stateRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(state);
-    const selectorRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(selector);
-    const equalityFnRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(equalityFn);
-    const erroredRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
-    const currentSliceRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-    if (currentSliceRef.current === void 0) {
-      currentSliceRef.current = selector(state);
-    }
-    let newStateSlice;
-    let hasNewStateSlice = false;
-    if (stateRef.current !== state || selectorRef.current !== selector || equalityFnRef.current !== equalityFn || erroredRef.current) {
-      newStateSlice = selector(state);
-      hasNewStateSlice = !equalityFn(currentSliceRef.current, newStateSlice);
-    }
-    useIsomorphicLayoutEffect(() => {
-      if (hasNewStateSlice) {
-        currentSliceRef.current = newStateSlice;
-      }
-      stateRef.current = state;
-      selectorRef.current = selector;
-      equalityFnRef.current = equalityFn;
-      erroredRef.current = false;
-    });
-    const stateBeforeSubscriptionRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(state);
-    useIsomorphicLayoutEffect(() => {
-      const listener = () => {
-        try {
-          const nextState = api.getState();
-          const nextStateSlice = selectorRef.current(nextState);
-          if (!equalityFnRef.current(currentSliceRef.current, nextStateSlice)) {
-            stateRef.current = nextState;
-            currentSliceRef.current = nextStateSlice;
-            forceUpdate();
-          }
-        } catch (error) {
-          erroredRef.current = true;
-          forceUpdate();
-        }
-      };
-      const unsubscribe = api.subscribe(listener);
-      if (api.getState() !== stateBeforeSubscriptionRef.current) {
-        listener();
-      }
-      return unsubscribe;
-    }, []);
-    return hasNewStateSlice ? newStateSlice : currentSliceRef.current;
-  };
-  Object.assign(useStore, api);
-  useStore[Symbol.iterator] = function* () {
-    console.warn("[useStore, api] = create() is deprecated and will be removed in v4");
-    yield useStore;
-    yield api;
-  };
-  return useStore;
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (create);
 
 
 /***/ })

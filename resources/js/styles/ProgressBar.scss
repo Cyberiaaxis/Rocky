@@ -1,7 +1,7 @@
 .bar {
   background: hsl(0, 2%, 78%);
   height: 7px;
-  width: 100%;
+  width: 200px;
   border-radius: 10px;
   	animation: pulse 10s infinite;
 }
@@ -10,7 +10,6 @@
   background: hsla(0, 87%, 30%, 0.979);
   height: 100%;
   max-width: 100%;
-  border-radius: 10px;
   	transform: scale(1);
 	animation: pulse 2s infinite;
 }
