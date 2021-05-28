@@ -29721,8 +29721,11 @@ var Routes = function Routes() {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     function checkUserData() {
-      if (localStorage.getItem('userDetails') !== undefined) {
-        var _JSON$parse = JSON.parse(localStorage.getItem('userDetails')),
+      var userDetails = localStorage.getItem('userDetails');
+      console.log(userDetails);
+
+      if (userDetails) {
+        var _JSON$parse = JSON.parse(userDetails),
             _userId = _JSON$parse.userId,
             _accessToken = _JSON$parse.accessToken,
             _loggedIn = _JSON$parse.loggedIn;
@@ -29746,9 +29749,7 @@ var Routes = function Routes() {
           exact: true,
           children: loggedIn ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_pages_Dashboard__WEBPACK_IMPORTED_MODULE_1__.default, {
             id: userId
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Redirect, {
-            to: "/"
-          })
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_pages_App__WEBPACK_IMPORTED_MODULE_3__.default, {})
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
           path: "/dashboard",
           children: loggedIn ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_pages_Dashboard__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -30716,6 +30717,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default)(function (theme) {
   var _ref;
 
@@ -30754,23 +30756,23 @@ var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default)(funct
   }), _ref;
 });
 
-var Header = function Header(Logout) {
+var Header = function Header() {
+  var classes = useStyles();
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState2 = _slicedToArray(_useState, 2),
       anchorEl = _useState2[0],
       setAnchorEl = _useState2[1];
 
-  var classes = useStyles();
-
-  var handleClose = function handleClose(event) {
-    console.log(event);
-    setAnchorEl(null);
+  var handleClick = function handleClick(event, value) {
+    if (anchorEl !== event.currentTarget) {
+      setAnchorEl(event.currentTarget);
+    }
   };
 
-  var handleClick = function handleClick(e, _popno) {
-    console.log(e.currentTarget);
-    e.preventDefault();
-    setAnchorEl(e.currentTarget);
+  var handleClose = function handleClose(value) {
+    console.log(value);
+    setAnchorEl(null);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
@@ -30803,8 +30805,16 @@ var Header = function Header(Logout) {
         "aria-haspopup": "true",
         onClick: handleClick,
         onMouseOver: handleClick,
-        children: "Menu"
+        children: "Open Menu"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
         id: "simple-menu",
         anchorEl: anchorEl,
         open: Boolean(anchorEl),
@@ -30812,122 +30822,141 @@ var Header = function Header(Logout) {
         MenuListProps: {
           onMouseLeave: handleClose
         },
+        getContentAnchorEl: null,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           onClick: function onClick() {
-            return Logout;
+            return handleClose("profile");
           },
-          href: "profile",
           children: "Profile"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           onClick: function onClick() {
-            return Logout;
+            return handleClose("account");
           },
-          href: "myaccount",
-          children: " My Account"
+          children: "My Account"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
           onClick: function onClick() {
-            return console.log(Logout);
+            return handleClose("logout");
           },
-          href: "logout",
           children: "Logout"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu1" : undefined,
+        "aria-owns": anchorEl ? "simple-menu" : undefined,
         "aria-haspopup": "true",
         onClick: handleClick,
         onMouseOver: handleClick,
         children: "Open Menu"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        id: "simple-menu1",
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        id: "simple-menu",
         anchorEl: anchorEl,
         open: Boolean(anchorEl),
         onClose: handleClose,
         MenuListProps: {
           onMouseLeave: handleClose
         },
+        getContentAnchorEl: null,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: handleClose,
+          onClick: function onClick() {
+            return handleClose("profile");
+          },
           children: "Profile"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: handleClose,
-          children: "My account"
+          onClick: function onClick() {
+            return handleClose("account");
+          },
+          children: "My Account"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: handleClose,
+          onClick: function onClick() {
+            return handleClose("logout");
+          },
           children: "Logout"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu3" : undefined,
+        "aria-owns": anchorEl ? "simple-menu" : undefined,
         "aria-haspopup": "true",
         onClick: handleClick,
         onMouseOver: handleClick,
         children: "Open Menu"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        id: "simple-menu3",
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        id: "simple-menu",
         anchorEl: anchorEl,
         open: Boolean(anchorEl),
         onClose: handleClose,
         MenuListProps: {
           onMouseLeave: handleClose
         },
+        getContentAnchorEl: null,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: handleClose,
+          onClick: function onClick() {
+            return handleClose("profile");
+          },
           children: "Profile"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: handleClose,
-          children: "My account"
+          onClick: function onClick() {
+            return handleClose("account");
+          },
+          children: "My Account"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: handleClose,
+          onClick: function onClick() {
+            return handleClose("logout");
+          },
           children: "Logout"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu4" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        id: "simple-menu4",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: handleClose,
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: handleClose,
-          children: "My account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: handleClose,
-          children: "Logout"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu5" : undefined,
+        "aria-owns": anchorEl ? "simple-menu" : undefined,
         "aria-haspopup": "true",
         onClick: handleClick,
         onMouseOver: handleClick,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
-          alt: "Rockwood",
+          alt: "Remy Sharp",
           src: "/static/images/avatar/1.jpg"
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        id: "simple-menu5",
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        id: "simple-menu",
         anchorEl: anchorEl,
         open: Boolean(anchorEl),
         onClose: handleClose,
         MenuListProps: {
           onMouseLeave: handleClose
         },
+        getContentAnchorEl: null,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: handleClose,
+          onClick: function onClick() {
+            return handleClose("profile");
+          },
           children: "Profile"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: handleClose,
-          children: "My account Settings"
+          onClick: function onClick() {
+            return handleClose("account");
+          },
+          children: "My Account"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: handleClose,
+          onClick: function onClick() {
+            return handleClose("logout");
+          },
           children: "Logout"
         })]
       })]

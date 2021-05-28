@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useHistory, Link } from "react-router-dom";
 import { Menu, MenuItem, makeStyles, withStyles, Paper, Box, Button, Grid, MenuList, Badge, Avatar, Popover } from "@material-ui/core";
 import ProgressBar from "../components/ProgressBar";
 import Stats from "../components/Stats";
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,20 +40,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
-const Header = (Logout) => {
-    const [anchorEl, setAnchorEl] = useState(null);
+const Header = () => {
     const classes = useStyles();
+    const [anchorEl, setAnchorEl] = useState(null);
 
-    const handleClose = (event) => {
-        console.log(event);
-        setAnchorEl(null);
+    const handleClick = (event, value) => {
+        if (anchorEl !== event.currentTarget) {
+            setAnchorEl(event.currentTarget);
+        }
     };
 
-    const handleClick = (e, _popno) => {
-      console.log(e.currentTarget);
-        e.preventDefault();
-        setAnchorEl(e.currentTarget);
+    const handleClose = (value) => {
+        console.log(value);
+        setAnchorEl(null);
     };
 
     return (
@@ -75,50 +74,77 @@ const Header = (Logout) => {
                 </Button>
 
                 <Button aria-owns={anchorEl ? "simple-menu" : undefined} aria-haspopup="true" onClick={handleClick} onMouseOver={handleClick}>
-                    Menu
-                </Button>
-                <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} MenuListProps={{ onMouseLeave: handleClose }}>
-                    <MenuItem onClick={() => Logout} href="profile" >Profile</MenuItem>
-                    <MenuItem onClick={() => Logout} href="myaccount"> My Account</MenuItem>
-                    <MenuItem onClick={() => console.log(Logout)} href="logout">Logout</MenuItem>
-                </Menu>
-                <Button aria-owns={anchorEl ? "simple-menu1" : undefined} aria-haspopup="true" onClick={handleClick} onMouseOver={handleClick}>
                     Open Menu
                 </Button>
-                <Menu id="simple-menu1" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} MenuListProps={{ onMouseLeave: handleClose }}>
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <Menu
+                    anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                    transformOrigin={{ vertical: "top", horizontal: "left" }}
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                    MenuListProps={{ onMouseLeave: handleClose }}
+                    getContentAnchorEl={null}
+                >
+                    <MenuItem onClick={() => handleClose("profile")}>Profile</MenuItem>
+                    <MenuItem onClick={() => handleClose("account")}>My Account</MenuItem>
+                    <MenuItem onClick={() => handleClose("logout")}>Logout</MenuItem>
                 </Menu>
-                <Button aria-owns={anchorEl ? "simple-menu3" : undefined} aria-haspopup="true" onClick={handleClick} onMouseOver={handleClick}>
+                <Button aria-owns={anchorEl ? "simple-menu" : undefined} aria-haspopup="true" onClick={handleClick} onMouseOver={handleClick}>
                     Open Menu
                 </Button>
-                <Menu id="simple-menu3" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} MenuListProps={{ onMouseLeave: handleClose }}>
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <Menu
+                    anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                    transformOrigin={{ vertical: "top", horizontal: "left" }}
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                    MenuListProps={{ onMouseLeave: handleClose }}
+                    getContentAnchorEl={null}
+                >
+                    <MenuItem onClick={() => handleClose("profile")}>Profile</MenuItem>
+                    <MenuItem onClick={() => handleClose("account")}>My Account</MenuItem>
+                    <MenuItem onClick={() => handleClose("logout")}>Logout</MenuItem>
                 </Menu>
-                <Button aria-owns={anchorEl ? "simple-menu4" : undefined} aria-haspopup="true" onClick={handleClick} onMouseOver={handleClick}>
+                <Button aria-owns={anchorEl ? "simple-menu" : undefined} aria-haspopup="true" onClick={handleClick} onMouseOver={handleClick}>
                     Open Menu
                 </Button>
-                <Menu id="simple-menu4" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} MenuListProps={{ onMouseLeave: handleClose }}>
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <Menu
+                    anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                    transformOrigin={{ vertical: "top", horizontal: "left" }}
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                    MenuListProps={{ onMouseLeave: handleClose }}
+                    getContentAnchorEl={null}
+                >
+                    <MenuItem onClick={() => handleClose("profile")}>Profile</MenuItem>
+                    <MenuItem onClick={() => handleClose("account")}>My Account</MenuItem>
+                    <MenuItem onClick={() => handleClose("logout")}>Logout</MenuItem>
                 </Menu>
-                <Button aria-owns={anchorEl ? "simple-menu5" : undefined} aria-haspopup="true" onClick={handleClick} onMouseOver={handleClick}>
-                    <Avatar alt="Rockwood" src="/static/images/avatar/1.jpg" />
+                <Button aria-owns={anchorEl ? "simple-menu" : undefined} aria-haspopup="true" onClick={handleClick} onMouseOver={handleClick}>
+                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
                 </Button>
-                <Menu id="simple-menu5" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} MenuListProps={{ onMouseLeave: handleClose }}>
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account Settings</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <Menu
+                    anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                    transformOrigin={{ vertical: "top", horizontal: "left" }}
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                    MenuListProps={{ onMouseLeave: handleClose }}
+                    getContentAnchorEl={null}
+                >
+                    <MenuItem onClick={() => handleClose("profile")}>Profile</MenuItem>
+                    <MenuItem onClick={() => handleClose("account")}>My Account</MenuItem>
+                    <MenuItem onClick={() => handleClose("logout")}>Logout</MenuItem>
                 </Menu>
             </Box>
         </>
     );
 };
-
 
 const AsideLeft = ({ section, setSection }) => {
     const [value, setvalue] = useState(0);

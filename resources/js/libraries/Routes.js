@@ -13,8 +13,10 @@ const Routes = () => {
 
     useEffect(() => {
         function checkUserData() {
-            if(localStorage.getItem('userDetails') !== undefined){
-                const {userId, accessToken, loggedIn} = JSON.parse(localStorage.getItem('userDetails'));
+            const userDetails = localStorage.getItem('userDetails');
+            console.log(userDetails);
+            if(userDetails){
+                const {userId, accessToken, loggedIn} = JSON.parse(userDetails);
                 setLoggedIn(loggedIn);
                 setUserId(userId);
                 setAccessToken(accessToken);
@@ -30,7 +32,7 @@ const Routes = () => {
             <Switch>
                 <Route path="/" exact={true}>
                 {/* <App /> */}
-                 {loggedIn ? <Dashboard id={userId} />   : <Redirect to='/'/>}
+                 {loggedIn ? <Dashboard id={userId} />   : <App/>}
                 </Route>
                 <Route path="/dashboard">
                 {/* <Dashboard /> */}
