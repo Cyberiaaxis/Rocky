@@ -30964,247 +30964,392 @@ var Header = function Header() {
   });
 };
 
-var AsideLeft = function AsideLeft(_ref2) {
-  var section = _ref2.section,
-      setSection = _ref2.setSection;
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+var AsideLeft = function AsideLeft() {
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState4 = _slicedToArray(_useState3, 2),
-      value = _useState4[0],
-      setvalue = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState6 = _slicedToArray(_useState5, 2),
-      current = _useState6[0],
-      setCurrent = _useState6[1];
-
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState8 = _slicedToArray(_useState7, 2),
-      anchorEl = _useState8[0],
-      setAnchorEl = _useState8[1];
+      anchorEl = _useState4[0],
+      setAnchorEl = _useState4[1];
 
   var classes = useStyles();
 
-  var handlePopoverClose = function handlePopoverClose() {
+  var handleClick = function handleClick(event, value) {
+    if (anchorEl !== event.currentTarget) {
+      setAnchorEl(event.currentTarget);
+    }
+  };
+
+  var handleClose = function handleClose(value) {
+    console.log(value);
     setAnchorEl(null);
-    setCurrent(null);
-  };
-
-  var handleClick = function handleClick(e, _popno) {
-    e.preventDefault();
-    setAnchorEl(e.currentTarget);
-    setCurrent(e.currentTarget.getAttribute("aria-controls"));
-    setSection(e.currentTarget.getAttribute("href"));
-  };
-
-  var handleChange = function handleChange(event, value) {
-    setvalue(value);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-controls": "location",
-        className: classes.startButton,
-        variant: "contained",
-        color: "primary",
-        size: "large",
-        children: "Location"
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        mx: "auto",
-        "aria-controls": "simple-menu",
-        color: "secondary",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      mt: 10,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu" : undefined,
         "aria-haspopup": "true",
         onClick: handleClick,
         onMouseOver: handleClick,
         children: "Open Menu"
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        mx: "auto",
-        "aria-controls": "simple-menu2",
-        color: "secondary",
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        mx: "auto",
-        "aria-controls": "simple-menu3",
-        color: "secondary",
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
-      id: "menu2Popover",
-      open: anchorEl !== null,
-      onClose: handlePopoverClose,
-      anchorEl: anchorEl,
-      children: [current === "start-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Crime"
-        })
-      }), current === "simple-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Travel"
-        })
-      }), current === "simple-menu2" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Fight"
-        })
-      }), current === "simple-menu3" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        id: "simple-menu",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        getContentAnchorEl: null,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Bounty"
+          onClick: function onClick() {
+            return handleClose("profile");
+          },
+          children: "Profile"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Non Bounty"
+          onClick: function onClick() {
+            return handleClose("account");
+          },
+          children: "My Account"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("logout");
+          },
+          children: "Logout"
         })]
-      }), current === "simple-menu4" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      mt: 10,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu" : undefined,
+        "aria-haspopup": "true",
+        onClick: handleClick,
+        onMouseOver: handleClick,
+        children: "Open Menu"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        id: "simple-menu",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        getContentAnchorEl: null,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Tab 5 - Submenu 1"
+          onClick: function onClick() {
+            return handleClose("profile");
+          },
+          children: "Profile"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Tab 5 - Submenu 2"
+          onClick: function onClick() {
+            return handleClose("account");
+          },
+          children: "My Account"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("logout");
+          },
+          children: "Logout"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      mt: 10,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu" : undefined,
+        "aria-haspopup": "true",
+        onClick: handleClick,
+        onMouseOver: handleClick,
+        children: "Open Menu"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        id: "simple-menu",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        getContentAnchorEl: null,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("profile");
+          },
+          children: "Profile"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("account");
+          },
+          children: "My Account"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("logout");
+          },
+          children: "Logout"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      mt: 10,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu" : undefined,
+        "aria-haspopup": "true",
+        onClick: handleClick,
+        onMouseOver: handleClick,
+        children: "Open Menu"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        id: "simple-menu",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        getContentAnchorEl: null,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("profile");
+          },
+          children: "Profile"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("account");
+          },
+          children: "My Account"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("logout");
+          },
+          children: "Logout"
         })]
       })]
     })]
   });
 };
 
-var AsideRight = function AsideRight(_ref3) {
-  var section = _ref3.section,
-      setSection = _ref3.setSection;
+var AsideRight = function AsideRight() {
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState6 = _slicedToArray(_useState5, 2),
+      anchorEl = _useState6[0],
+      setAnchorEl = _useState6[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-      _useState10 = _slicedToArray(_useState9, 2),
-      value = _useState10[0],
-      setvalue = _useState10[1];
+  var classes = useStyles();
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState12 = _slicedToArray(_useState11, 2),
-      current = _useState12[0],
-      setCurrent = _useState12[1];
+  var handleClick = function handleClick(event, value) {
+    if (anchorEl !== event.currentTarget) {
+      setAnchorEl(event.currentTarget);
+    }
+  };
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState14 = _slicedToArray(_useState13, 2),
-      anchorEl = _useState14[0],
-      setAnchorEl = _useState14[1];
-
-  var handlePopoverClose = function handlePopoverClose() {
+  var handleClose = function handleClose(value) {
+    console.log(value);
     setAnchorEl(null);
-    setCurrent(null);
-  };
-
-  var handleClick = function handleClick(e, _popno) {
-    e.preventDefault();
-    setAnchorEl(e.currentTarget);
-    setCurrent(e.currentTarget.getAttribute("aria-controls"));
-    setSection(e.currentTarget.getAttribute("href"));
-  };
-
-  var handleChange = function handleChange(event, value) {
-    setvalue(value);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      marginBottom: 5,
-      marginTop: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-controls": "start-menu",
-        color: "secondary",
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Start"
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        mx: "auto",
-        "aria-controls": "simple-menu",
-        color: "secondary",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      mt: 10,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu" : undefined,
         "aria-haspopup": "true",
         onClick: handleClick,
         onMouseOver: handleClick,
         children: "Open Menu"
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        mx: "auto",
-        "aria-controls": "simple-menu2",
-        color: "secondary",
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      marginBottom: 5,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        mx: "auto",
-        "aria-controls": "simple-menu3",
-        color: "secondary",
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
-      id: "menu2Popover",
-      open: anchorEl !== null,
-      onClose: handlePopoverClose,
-      anchorEl: anchorEl,
-      children: [current === "start-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Crime"
-        })
-      }), current === "simple-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Travel"
-        })
-      }), current === "simple-menu2" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Fight"
-        })
-      }), current === "simple-menu3" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        id: "simple-menu",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        getContentAnchorEl: null,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Bounty"
+          onClick: function onClick() {
+            return handleClose("profile");
+          },
+          children: "Profile"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Non Bounty"
+          onClick: function onClick() {
+            return handleClose("account");
+          },
+          children: "My Account"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("logout");
+          },
+          children: "Logout"
         })]
-      }), current === "simple-menu4" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      mt: 10,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu" : undefined,
+        "aria-haspopup": "true",
+        onClick: handleClick,
+        onMouseOver: handleClick,
+        children: "Open Menu"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        id: "simple-menu",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        getContentAnchorEl: null,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Tab 5 - Submenu 1"
+          onClick: function onClick() {
+            return handleClose("profile");
+          },
+          children: "Profile"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Tab 5 - Submenu 2"
+          onClick: function onClick() {
+            return handleClose("account");
+          },
+          children: "My Account"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("logout");
+          },
+          children: "Logout"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      mt: 10,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu" : undefined,
+        "aria-haspopup": "true",
+        onClick: handleClick,
+        onMouseOver: handleClick,
+        children: "Open Menu"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        id: "simple-menu",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        getContentAnchorEl: null,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("profile");
+          },
+          children: "Profile"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("account");
+          },
+          children: "My Account"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("logout");
+          },
+          children: "Logout"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
+      mt: 10,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
+        "aria-owns": anchorEl ? "simple-menu" : undefined,
+        "aria-haspopup": "true",
+        onClick: handleClick,
+        onMouseOver: handleClick,
+        children: "Open Menu"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "left"
+        },
+        transformOrigin: {
+          vertical: "top",
+          horizontal: "left"
+        },
+        id: "simple-menu",
+        anchorEl: anchorEl,
+        open: Boolean(anchorEl),
+        onClose: handleClose,
+        MenuListProps: {
+          onMouseLeave: handleClose
+        },
+        getContentAnchorEl: null,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("profile");
+          },
+          children: "Profile"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("account");
+          },
+          children: "My Account"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+          onClick: function onClick() {
+            return handleClose("logout");
+          },
+          children: "Logout"
         })]
       })]
     })]
   });
 };
 
-var Main = function Main(_ref4) {
-  var section = _ref4.section;
+var Main = function Main(_ref2) {
+  var section = _ref2.section;
   var page;
 
   switch (section) {
@@ -31239,24 +31384,24 @@ var Main = function Main(_ref4) {
   });
 };
 
-var Footer = function Footer(_ref5) {
-  var section = _ref5.section,
-      setSection = _ref5.setSection;
+var Footer = function Footer(_ref3) {
+  var section = _ref3.section,
+      setSection = _ref3.setSection;
 
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-      _useState16 = _slicedToArray(_useState15, 2),
-      value = _useState16[0],
-      setvalue = _useState16[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      value = _useState8[0],
+      setvalue = _useState8[1];
 
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState18 = _slicedToArray(_useState17, 2),
-      current = _useState18[0],
-      setCurrent = _useState18[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState10 = _slicedToArray(_useState9, 2),
+      current = _useState10[0],
+      setCurrent = _useState10[1];
 
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState20 = _slicedToArray(_useState19, 2),
-      anchorEl = _useState20[0],
-      setAnchorEl = _useState20[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState12 = _slicedToArray(_useState11, 2),
+      anchorEl = _useState12[0],
+      setAnchorEl = _useState12[1];
 
   var handlePopoverClose = function handlePopoverClose() {
     setAnchorEl(null);
@@ -31364,10 +31509,10 @@ var Footer = function Footer(_ref5) {
 function Dashboard() {
   var classes = useStyles();
 
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("home"),
-      _useState22 = _slicedToArray(_useState21, 2),
-      section = _useState22[0],
-      setSection = _useState22[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("home"),
+      _useState14 = _slicedToArray(_useState13, 2),
+      section = _useState14[0],
+      setSection = _useState14[1];
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: classes.root,
