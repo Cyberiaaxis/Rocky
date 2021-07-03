@@ -9,6 +9,8 @@ const Lists = () => {
   const [responseData, setResponseData] = useState(null)
 
   const fetchData = async () => {
+    const  result =  await useFetchApi('topplayerlist');
+   console.log(result);
     setErrors(false)
     setStatus('fetching')
     await ky('https://api.rockwood.test/api/topplayerlist').json()

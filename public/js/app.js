@@ -28393,13 +28393,20 @@ var Lists = function Lists() {
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var result;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _context.next = 2;
+              return useFetchApi('topplayerlist');
+
+            case 2:
+              result = _context.sent;
+              console.log(result);
               setErrors(false);
               setStatus('fetching');
-              _context.next = 4;
+              _context.next = 8;
               return (0,ky__WEBPACK_IMPORTED_MODULE_5__.default)('https://api.rockwood.test/api/topplayerlist').json().then(function (response) {
                 // console.log(response?.length);
                 if (response !== null && response !== void 0 && response.length) {
@@ -28412,7 +28419,7 @@ var Lists = function Lists() {
                 setErrors(error); // console.error(error)
               });
 
-            case 4:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -30680,22 +30687,18 @@ var Attack = function Attack() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Dashboard)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Menu/Menu.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/MenuItem/MenuItem.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Avatar/Avatar.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Popover/Popover.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/MenuList/MenuList.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Box/Box.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
 /* harmony import */ var _components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/ProgressBar */ "./resources/js/components/ProgressBar.js");
-/* harmony import */ var _components_Stats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Stats */ "./resources/js/components/Stats.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _styles_menuStyle_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/menuStyle.scss */ "./resources/js/styles/menuStyle.scss");
+/* harmony import */ var _components_Stats__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Stats */ "./resources/js/components/Stats.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -30717,14 +30720,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default)(function (theme) {
+var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default)(function (theme) {
   var _ref;
 
   return _ref = {
     root: {
       flexGrow: 1,
-      backgroundImage: 'url("https://www.gstatic.com/webp/gallery/1.jpg")',
+      // backgroundImage: 'url("https://www.gstatic.com/webp/gallery/1.jpg")',
       backgroundSize: "cover",
       height: "100vh",
       width: "100%"
@@ -30755,817 +30757,175 @@ var useStyles = (0,_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default)(funct
     width: "13em"
   }), _ref;
 });
+var topMenuBar = [{
+  label: "Home",
+  href: "#"
+}, {
+  label: "About",
+  href: "#"
+}, {
+  label: "Products",
+  children: [{
+    label: "Laptops",
+    children: [{
+      label: "gaming",
+      href: "#"
+    }, {
+      label: "business",
+      href: "#"
+    }]
+  }, {
+    label: "Monitors",
+    href: "#"
+  }, {
+    label: "Printers",
+    href: "#"
+  }]
+}, {
+  label: "Contact",
+  href: "#"
+}];
 
-var Header = function Header() {
-  var classes = useStyles();
+var MenuItem = function MenuItem(_ref2) {
+  var item = _ref2.item;
+  console.log(item);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
+      href: item.href,
+      children: [item.label, " ", !!item.children && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        children: "\u2192"
+      })]
+    }), item.children && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
+      className: "dropdown",
+      children: item.children.map(function (child, idx) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(MenuItem, {
+          item: child
+        }, idx);
+      })
+    })]
+  });
+};
 
+var Menu = function Menu(_ref3) {
+  var items = _ref3.items;
+  console.log(items);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("nav", {
+    className: "hoverMenu",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
+      children: items.map(function (item, index) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(MenuItem, {
+          item: item
+        }, index);
+      })
+    })
+  });
+};
+
+var Dashboard = function Dashboard() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState2 = _slicedToArray(_useState, 2),
       anchorEl = _useState2[0],
       setAnchorEl = _useState2[1];
 
-  var handleClick = function handleClick(event, value) {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
-    }
-  };
-
-  var handleClose = function handleClose(value) {
-    console.log(value);
-    setAnchorEl(null);
-  };
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      display: "flex",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-        paddingTop: 1,
-        flexGrow: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-          className: classes.startButton,
-          variant: "contained",
-          color: "primary",
-          size: "large",
-          children: "Start"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        children: ["Energy: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__.default, {
-          percentComplete: 100
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        children: ["Will: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__.default, {
-          percentComplete: 50
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        children: ["HP: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__.default, {
-          percentComplete: 75
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left"
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left"
-        },
-        id: "simple-menu",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        getContentAnchorEl: null,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("profile");
-          },
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("account");
-          },
-          children: "My Account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("logout");
-          },
-          children: "Logout"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left"
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left"
-        },
-        id: "simple-menu",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        getContentAnchorEl: null,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("profile");
-          },
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("account");
-          },
-          children: "My Account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("logout");
-          },
-          children: "Logout"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left"
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left"
-        },
-        id: "simple-menu",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        getContentAnchorEl: null,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("profile");
-          },
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("account");
-          },
-          children: "My Account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("logout");
-          },
-          children: "Logout"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
-          alt: "Remy Sharp",
-          src: "/static/images/avatar/1.jpg"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left"
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left"
-        },
-        id: "simple-menu",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        getContentAnchorEl: null,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("profile");
-          },
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("account");
-          },
-          children: "My Account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("logout");
-          },
-          children: "Logout"
-        })]
-      })]
-    })
-  });
-};
-
-var AsideLeft = function AsideLeft() {
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("home"),
       _useState4 = _slicedToArray(_useState3, 2),
-      anchorEl = _useState4[0],
-      setAnchorEl = _useState4[1];
+      page = _useState4[0],
+      setPage = _useState4[1];
 
-  var classes = useStyles();
+  var classes = useStyles(); // const handleClick = (event, value) => {
+  //     if (anchorEl !== event.currentTarget) {
+  //         setAnchorEl(event.currentTarget);
+  //     }
+  // };
+  // const handleClose = (value) => {
+  //     setPage(value);
+  //     setAnchorEl(null);
+  // };
 
-  var handleClick = function handleClick(event, value) {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
-    }
+  var pages = {
+    "profile": /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Stats__WEBPACK_IMPORTED_MODULE_3__.default, {}),
+    "account": "account",
+    "logout": "Logout",
+    "stats": /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Stats__WEBPACK_IMPORTED_MODULE_3__.default, {}),
+    "explore": null,
+    "city": null,
+    "market": null,
+    "crimes": null,
+    "hof": null
   };
-
-  var handleClose = function handleClose(value) {
-    console.log(value);
-    setAnchorEl(null);
-  };
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      mt: 10,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left"
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left"
-        },
-        id: "simple-menu",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        getContentAnchorEl: null,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("profile");
-          },
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("account");
-          },
-          children: "My Account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("logout");
-          },
-          children: "Logout"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      mt: 10,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left"
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left"
-        },
-        id: "simple-menu",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        getContentAnchorEl: null,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("profile");
-          },
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("account");
-          },
-          children: "My Account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("logout");
-          },
-          children: "Logout"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      mt: 10,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left"
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left"
-        },
-        id: "simple-menu",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        getContentAnchorEl: null,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("profile");
-          },
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("account");
-          },
-          children: "My Account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("logout");
-          },
-          children: "Logout"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      mt: 10,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left"
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left"
-        },
-        id: "simple-menu",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        getContentAnchorEl: null,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("profile");
-          },
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("account");
-          },
-          children: "My Account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("logout");
-          },
-          children: "Logout"
-        })]
-      })]
-    })]
-  });
-};
-
-var AsideRight = function AsideRight() {
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState6 = _slicedToArray(_useState5, 2),
-      anchorEl = _useState6[0],
-      setAnchorEl = _useState6[1];
-
-  var classes = useStyles();
-
-  var handleClick = function handleClick(event, value) {
-    if (anchorEl !== event.currentTarget) {
-      setAnchorEl(event.currentTarget);
-    }
-  };
-
-  var handleClose = function handleClose(value) {
-    console.log(value);
-    setAnchorEl(null);
-  };
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      mt: 10,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left"
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left"
-        },
-        id: "simple-menu",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        getContentAnchorEl: null,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("profile");
-          },
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("account");
-          },
-          children: "My Account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("logout");
-          },
-          children: "Logout"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      mt: 10,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left"
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left"
-        },
-        id: "simple-menu",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        getContentAnchorEl: null,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("profile");
-          },
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("account");
-          },
-          children: "My Account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("logout");
-          },
-          children: "Logout"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      mt: 10,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left"
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left"
-        },
-        id: "simple-menu",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        getContentAnchorEl: null,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("profile");
-          },
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("account");
-          },
-          children: "My Account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("logout");
-          },
-          children: "Logout"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      mt: 10,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-        "aria-owns": anchorEl ? "simple-menu" : undefined,
-        "aria-haspopup": "true",
-        onClick: handleClick,
-        onMouseOver: handleClick,
-        children: "Open Menu"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
-        anchorOrigin: {
-          vertical: "bottom",
-          horizontal: "left"
-        },
-        transformOrigin: {
-          vertical: "top",
-          horizontal: "left"
-        },
-        id: "simple-menu",
-        anchorEl: anchorEl,
-        open: Boolean(anchorEl),
-        onClose: handleClose,
-        MenuListProps: {
-          onMouseLeave: handleClose
-        },
-        getContentAnchorEl: null,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("profile");
-          },
-          children: "Profile"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("account");
-          },
-          children: "My Account"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          onClick: function onClick() {
-            return handleClose("logout");
-          },
-          children: "Logout"
-        })]
-      })]
-    })]
-  });
-};
-
-var Main = function Main(_ref2) {
-  var section = _ref2.section;
-  var page;
-
-  switch (section) {
-    case "stats":
-      page = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Stats__WEBPACK_IMPORTED_MODULE_2__.default, {});
-      break;
-
-    case "explore":
-      page = "Explore";
-      break;
-    // case "profile":
-    //     page = <Profile />;
-    //     break;
-
-    case "city":
-      page = "city";
-      break;
-
-    case "market":
-      page = "Market";
-      break;
-
-    default:
-      page = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Stats__WEBPACK_IMPORTED_MODULE_2__.default, {});
-      break;
-  }
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("main", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
-      children: page
-    })
-  });
-};
-
-var Footer = function Footer(_ref3) {
-  var section = _ref3.section,
-      setSection = _ref3.setSection;
-
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-      _useState8 = _slicedToArray(_useState7, 2),
-      value = _useState8[0],
-      setvalue = _useState8[1];
-
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState10 = _slicedToArray(_useState9, 2),
-      current = _useState10[0],
-      setCurrent = _useState10[1];
-
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState12 = _slicedToArray(_useState11, 2),
-      anchorEl = _useState12[0],
-      setAnchorEl = _useState12[1];
-
-  var handlePopoverClose = function handlePopoverClose() {
-    setAnchorEl(null);
-    setCurrent(null);
-  };
-
-  var handleClick = function handleClick(e, _popno) {
-    e.preventDefault();
-    setAnchorEl(e.currentTarget);
-    setCurrent(e.currentTarget.getAttribute("aria-controls"));
-    setSection(e.currentTarget.getAttribute("href"));
-  };
-
-  var handleChange = function handleChange(event, value) {
-    setvalue(value);
-  };
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-      display: "flex",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-        p: 1,
-        flexGrow: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-          "aria-controls": "start-menu",
-          color: "secondary",
-          "aria-haspopup": "true",
-          onClick: handleClick,
-          onMouseOver: handleClick,
-          children: "Start"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-        p: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-          mx: "auto",
-          "aria-controls": "simple-menu",
-          color: "secondary",
-          "aria-haspopup": "true",
-          onClick: handleClick,
-          onMouseOver: handleClick,
-          children: "Open Menu"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-        p: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-          mx: "auto",
-          "aria-controls": "simple-menu2",
-          color: "secondary",
-          "aria-haspopup": "true",
-          onClick: handleClick,
-          onMouseOver: handleClick,
-          children: "Open Menu"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
-        p: 1,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
-          mx: "auto",
-          "aria-controls": "simple-menu3",
-          color: "secondary",
-          "aria-haspopup": "true",
-          onClick: handleClick,
-          onMouseOver: handleClick,
-          children: "Open Menu"
-        })
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
-      id: "menu2Popover",
-      open: anchorEl !== null,
-      onClose: handlePopoverClose,
-      anchorEl: anchorEl,
-      children: [current === "start-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Crime"
-        })
-      }), current === "simple-menu" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Travel"
-        })
-      }), current === "simple-menu2" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Fight"
-        })
-      }), current === "simple-menu3" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Bounty"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Non Bounty"
-        })]
-      }), current === "simple-menu4" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
-        onMouseLeave: handlePopoverClose,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Tab 5 - Submenu 1"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
-          children: "Tab 5 - Submenu 2"
-        })]
-      })]
-    })]
-  });
-};
-
-function Dashboard() {
-  var classes = useStyles();
-
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("home"),
-      _useState14 = _slicedToArray(_useState13, 2),
-      section = _useState14[0],
-      setSection = _useState14[1];
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+  console.log(pages[page]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     className: classes.root,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
       container: true,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         item: true,
         xs: 12,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Header, {
-          section: section,
-          setSection: setSection
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+          display: "flex",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
+            paddingTop: 1,
+            flexGrow: 1,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+              className: classes.startButton,
+              variant: "contained",
+              color: "primary",
+              size: "large",
+              children: "Start"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+            children: ["Energy: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__.default, {
+              percentComplete: 100
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+            children: ["Will: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__.default, {
+              percentComplete: 50
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+            children: ["HP: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_ProgressBar__WEBPACK_IMPORTED_MODULE_1__.default, {
+              percentComplete: 75
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Menu, {
+              items: topMenuBar // openOnHover={true}
+              // onSelected={handleSelected}
+
+            })
+          })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         item: true,
         xs: 2,
         sm: 1,
-        className: classes.sideBarLeft,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(AsideLeft, {
-          section: section,
-          setSection: setSection
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        className: classes.sideBarLeft
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         item: true,
         xs: 8,
         sm: 10,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_13__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
           margin: 0,
           padding: 0,
           className: classes.paper,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Main, {
-            section: section
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("main", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+              children: pages[page]
+            })
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         item: true,
         xs: 1,
         sm: 1,
-        className: classes.sideBarRight,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(AsideRight, {
-          section: section,
-          setSection: setSection
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
+        className: classes.sideBarRight
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         item: true,
-        xs: 12,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Footer, {
-          section: section,
-          setSection: setSection
-        })
+        xs: 12
       })]
     })
   });
-}
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dashboard);
 
 /***/ }),
 
@@ -32851,6 +32211,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "body {\n  width: 100%;\n  height: 50%;\n  overflow: hidden;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background-size: cover;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/styles/menuStyle.scss":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/styles/menuStyle.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".hoverMenu ul {\n  padding: 0;\n  list-style: none;\n  background: #f2f2f2;\n}\n\n.hoverMenu ul li {\n  position: relative;\n  display: inline-block;\n  position: relative;\n  line-height: 21px;\n  text-align: left;\n}\n\n.hoverMenu ul li a {\n  display: block;\n  padding: 8px 25px;\n  color: #333;\n  text-decoration: none;\n}\n\n.hoverMenu ul li a:hover {\n  color: #fff;\n  background: #939393;\n}\n\n.hoverMenu ul li ul.dropdown {\n  min-width: 100%;\n  /* Set width of the dropdown */\n  display: none;\n  position: absolute;\n  z-index: 999;\n  /* left: 100%; */\n  top: 100%;\n}\n\n.hoverMenu ul li:hover > ul.dropdown {\n  display: block;\n  /* Display the dropdown */\n}\n\n.hoverMenu ul li ul.dropdown li {\n  display: block;\n}\n\n.hoverMenu .dropdown .dropdown {\n  top: 0;\n  left: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -74686,6 +74070,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_index_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/styles/menuStyle.scss":
+/*!********************************************!*\
+  !*** ./resources/js/styles/menuStyle.scss ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_menuStyle_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./menuStyle.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[7].oneOf[1].use[3]!./resources/js/styles/menuStyle.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_menuStyle_scss__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_7_oneOf_1_use_3_menuStyle_scss__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ }),
 
