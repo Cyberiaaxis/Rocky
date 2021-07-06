@@ -4,7 +4,6 @@
   background: transparent;
 }
 .hoverMenu ul li {
-  position: relative;
   /* display: inline-block; */
   position: relative;
   line-height: 21px;
@@ -59,7 +58,7 @@
 }
 
 .AsideRight .hoverMenu ul li ul.dropdown {
-  top: 0;
+  top: 2px;
   transform: translateX(-100%);
 }
 
@@ -107,12 +106,20 @@
   display: inline-block;
 }
 
-.AsideRight .hoverMenu ul li {
+.AsideRight .hoverMenu ul > li a {
   text-align: right;
   line-height: 137px;
 }
 
-.AsideLeft .hoverMenu ul li {
+.AsideLeft .hoverMenu ul > li a {
   text-align: left;
   line-height: 137px;
+}
+
+.AsideRight .hoverMenu ul li ul.dropdown li > a {
+  line-height: 21px;
+}
+
+.AsideLeft .hoverMenu ul li ul.dropdown li > a {
+  line-height: 21px;
 }
