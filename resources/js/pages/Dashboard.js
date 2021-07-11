@@ -44,11 +44,11 @@ const useStyles = makeStyles((theme) => ({
 const topMenuBar = [
     {
         label: "Home",
-        href: "#",
+        href: "dashboard",
     },
     {
         label: "About",
-        href: "#",
+        href: "about",
     },
     {
         label: "Products",
@@ -58,78 +58,76 @@ const topMenuBar = [
                 children: [
                     {
                         label: "gaming",
-                        href: "#",
+                        href: "gaming",
                     },
                     {
                         label: "business",
-                        href: "#",
+                        href: "business",
                     },
                 ],
             },
             {
                 label: "Monitors",
-                href: "#",
+                href: "monitors",
             },
             {
                 label: "Printers",
-                href: "#",
+                href: "printers",
             },
         ],
     },
     {
         label: "Contact",
-        href: "#",
+        href: "contact",
     },
 ];
 
-const MenuItem = ({ item }) => {
-    console.log(item);
-    return (
-        <li>
-            <a href={item.href}>
-                {item.label} {!!item.children}
-            </a>
-            {item.children && (
-                <ul className="dropdown">
-                    {item.children.map((child, idx) => (
-                        <MenuItem item={child} key={idx} />
-                    ))}
-                </ul>
-            )}
-        </li>
-    );
-};
 
-const Menu = ({ items }) => {
-    console.log(items);
-    return (
-        <nav className="hoverMenu">
-            <ul>
-                {items.map((item, index) => (
-                    <MenuItem key={index} item={item} />
-                ))}
-            </ul>
-        </nav>
-    );
-};
 
 const Dashboard = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [page, setPage] = useState("home");
+    const [page, setPage] = useState("dashboard");
     const classes = useStyles();
 
-    // const handleClick = (event, value) => {
-    //     if (anchorEl !== event.currentTarget) {
-    //         setAnchorEl(event.currentTarget);
-    //     }
-    // };
 
-    // const handleClose = (value) => {
-    //     setPage(value);
-    //     setAnchorEl(null);
-    // };
+
+    const MenuItem = ({ item }) => {
+        return (
+            <li>
+                <a href={'#'} onClick={() => handleClick(item.href)}>
+                    {item.label} {!!item.children}
+                </a>
+                {item.children && (
+                    <ul className="dropdown">
+                        {item.children.map((child, idx) => (
+                            <MenuItem item={child} key={idx} />
+                        ))}
+                    </ul>
+                )}
+            </li>
+        );
+    };
+    
+    const Menu = ({ items }) => {
+        return (
+            <nav className="hoverMenu">
+                <ul>
+                    {items.map((item, index) => (
+                        <MenuItem key={index} item={item} />
+                    ))}
+                </ul>
+            </nav>
+        );
+    };
+
+    const handleClick = (event) => {
+        if(event !== undefined){
+            setPage(event);   
+        }
+    };
 
     const pages = {
+        about: <Stats />,
+        home: <Stats />,
         profile: <Stats />,
         account: "account",
         logout: "Logout",
@@ -140,8 +138,7 @@ const Dashboard = () => {
         crimes: null,
         hof: null,
     };
-
-    console.log(pages[page]);
+console.log(pages[page]);
     return (
         <div className={classes.root}>
             <Grid container>
@@ -165,8 +162,6 @@ const Dashboard = () => {
                         <Box mt={2} className="Header">
                             <Menu
                                 items={topMenuBar}
-                                // openOnHover={true}
-                                // onSelected={handleSelected}
                             />
                         </Box>
                     </Box>
@@ -175,15 +170,13 @@ const Dashboard = () => {
                 <Grid item xs={2} sm={1} className={clsx(classes.sideBarLeft, "AsideLeft")}>
                     <Menu
                         items={topMenuBar}
-                        // openOnHover={true}
-                        // onSelected={handleSelected}
                     />
                 </Grid>
                 {/* Main */}
                 <Grid item xs={8} sm={10}>
                     <Paper margin={0} padding={0} className={classes.paper}>
                         <main>
-                            <h1>{pages[page]}</h1>
+                            {pages[page]}
                         </main>
                     </Paper>
                 </Grid>
@@ -191,16 +184,12 @@ const Dashboard = () => {
                 <Grid item xs={1} sm={1} className={clsx(classes.sideBarRight, "AsideRight")}>
                     <Menu
                         items={topMenuBar}
-                        // openOnHover={true}
-                        // onSelected={handleSelected}
                     />
                 </Grid>
                 {/* Footer */}
                 <Grid item xs={12} className="Dashboardfooter">
                     <Menu
                         items={topMenuBar}
-                        // openOnHover={true}
-                        // onSelected={handleSelected}
                     />
                 </Grid>
             </Grid>
