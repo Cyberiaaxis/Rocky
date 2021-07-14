@@ -2,3 +2,23 @@
   display: flex; /* or inline-flex */
   justify-content: space-evenly ;
 }
+.statsDetails ul {
+  display: none;
+  position: absolute;
+  margin-left: 4em;
+  // margin-top: -2em;
+  background: rgb(54, 54, 51);
+  padding: 1em;
+}
+
+.statsDetails li:hover > ul {
+  display: block;
+}
+.statsDetails li:hover > ul > li {
+  border: 1px;
+}
+ .statsDetails > li:first-of-type {
+  padding: 1em;
+  color:red;
+  border: dotted olivedrab;
+}
