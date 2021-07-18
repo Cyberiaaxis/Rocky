@@ -4,6 +4,7 @@ import clsx from "clsx";
 import ProgressBar from "../components/ProgressBar";
 import "../styles/menuStyle.scss";
 import Stats from "../components/Stats";
+import Hof from "../components/Hof";
 // https://codesandbox.io/s/material-demo-forked-9ot1z?file=/menuStyle.css
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,8 +58,8 @@ const topMenuBar = [
                 label: "Laptops",
                 children: [
                     {
-                        label: "gaming",
-                        href: "gaming",
+                        label: "Hall of Fame",
+                        href: "hof",
                     },
                     {
                         label: "business",
@@ -126,6 +127,7 @@ const Dashboard = () => {
     };
 
     const pages = {
+        hof: <Hof />,        
         about: <Stats />,
         home: <Stats />,
         profile: <Stats />,
@@ -136,7 +138,6 @@ const Dashboard = () => {
         city: null,
         market: null,
         crimes: null,
-        hof: null,
     };
 console.log(pages[page]);
     return (

@@ -36,6 +36,7 @@
         "canvasjs-react-charts": "^1.0.5",
         "clsx": "^1.1.1",
         "ky": "^0.27.0",
+        "material-table": "^1.69.3",
         "react-flash-message": "^1.0.5",
         "react-google-charts": "^3.0.15",
         "react-hook-form": "^7.1.1",
