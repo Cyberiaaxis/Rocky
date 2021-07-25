@@ -60,10 +60,12 @@ const Hof = () => {
     <React.Fragment>
       <BottomNavigation
         value={value}
-        onChange={(event, newValue) => {
-          const  result =  Fetch(newValue);
-          console.log(result);
-          console.log(newValue);
+        onChange={async (event, newValue) => {
+          
+          const  result =  await Fetch(newValue,{method: 'post',data}); //data will be come from here 
+          // console.log(result);
+          // console.log(result);
+          // console.log(newValue);
           setValue(newValue);
         }}
         showLabels
@@ -71,6 +73,12 @@ const Hof = () => {
         <BottomNavigationAction label="List1" value="List1" icon={<RestoreIcon />} />
         <BottomNavigationAction label="List2" value="List2" icon={<FavoriteIcon />} />
         <BottomNavigationAction label="List3" value="List3" icon={<LocationOnIcon />} />
+        <BottomNavigationAction label="List4" value="List4" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="List5" value="List5" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="List6" value="List6" icon={<LocationOnIcon />} />
+        <BottomNavigationAction label="List7" value="List7" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="List8" value="List8" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="List9" value="List9" icon={<LocationOnIcon />} />
       </BottomNavigation>
       <div style={{ height: 500, width: "100%" }}>
         <DataGrid

@@ -1,9 +1,10 @@
 import ky from 'ky';
 
 const Fetch = async (url, params) => {
-   const methodType =  (!params.method ? 'get' : params.method);
+    console.log(params.method);
+//    const methodType =  (!params.method ? 'get' : params.method);
     const options = {
-        method: methodType,
+        method: params.method,
         body: JSON.stringify(
             params.data
         ),
