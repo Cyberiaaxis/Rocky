@@ -3,7 +3,7 @@ import '../styles/LoginForm.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey, faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from 'react-hook-form';
-import useFetchApi from '../libraries/useFetchApi';
+import Fetch from '../libraries/Fetch';
 import Modal from "./Modal";
 import RegistrationForm from "./RegistrationForm";
 import { useHistory, Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ export default function LoginForm() {
     const history = useHistory();
 
     const onSubmit = async (data) => {
-        const  result =  await useFetchApi('auth/login',{method: 'post',data});
+        const  result =  await Fetch('auth/login',{method: 'post',data});
         // console.log(result.access_token);
 
         if(result.user){

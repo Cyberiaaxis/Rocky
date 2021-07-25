@@ -5,9 +5,9 @@ import "../styles/Stats.scss";
 const Stats = () => {
     return (
         <React.Fragment>
-<div class="StatsBox">
+<div className="StatsBox">
     <div>
-        <ul class="statsDetails">
+        <ul className="statsDetails">
             <li>
               <p>First Stat</p>
                 <ul>

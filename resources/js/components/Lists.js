@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ky from 'ky'
 import Marquee from 'react-marquee-master'
 import '../styles/Lists.scss'
+import Fetch from '../libraries/Fetch';
 
 const Lists = () => {
   const [status, setStatus] = useState('idle')
@@ -9,7 +10,7 @@ const Lists = () => {
   const [responseData, setResponseData] = useState(null)
 
   const fetchData = async () => {
-    const  result =  await useFetchApi('topplayerlist');
+    const  result =  await Fetch('topplayerlist');
    console.log(result);
     setErrors(false)
     setStatus('fetching')

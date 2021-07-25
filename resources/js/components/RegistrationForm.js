@@ -2,7 +2,7 @@ import '../styles/RegistrationForm.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey, faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import { useForm } from 'react-hook-form';
-import useFetchApi from '../libraries/useFetchApi';
+import Fetch from '../libraries/Fetch';
 import { useHistory } from 'react-router-dom';
 import "../styles/RegistrationForm.scss";
 
@@ -14,7 +14,7 @@ const RegistrationForm = () => {
     const onSubmit = (data) => {
         console.log("registration");
         console.log(data);
-         useFetchApi(url,{method: 'post', data});
+         Fetch(url,{method: 'post', data});
 
         //  if(!error){
         //     return 'activate your account';

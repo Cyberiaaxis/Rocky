@@ -1,92 +1,94 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import MaterialTable from "material-table";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+// import { makeStyles } from "@material-ui/core/styles";
+import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 import RestoreIcon from "@material-ui/icons/Restore";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import { DataGrid } from "@material-ui/data-grid";
+import { useDemoData } from "@material-ui/x-grid-data-generator";
+import Fetch from '../libraries/Fetch';
 
-const useStyles = makeStyles({
-    root: {
-        width: "100%",
-        height: "100%",
-    },
-});
+// const useStyles = makeStyles({});
+
+function loadServerRows(page, data) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(data.rows.slice(page * 5, (page + 1) * 5));
+    }, Math.random() * 500 + 100); // simulate network latency
+  });
+}
 
 const Hof = () => {
-    const tableRef = React.createRef();
-    const classes = useStyles();
-    const [value, setValue] = React.useState(0);
-    return (
-        <React.Fragment>
-            <BottomNavigation
-                value={value}
-                onChange={(event, newValue) => {
-                    setValue(newValue);
-                }}
-                
-                showLabels
-            >
-                <BottomNavigationAction label="List1" icon={<RestoreIcon />} />
-                <BottomNavigationAction label="List2" icon={<FavoriteIcon />} />
-                <BottomNavigationAction label="List3" icon={<LocationOnIcon />} />
-            </BottomNavigation>
-            <div className={classes.root}>
-                <MaterialTable
-                    title="Legends"
-                    tableRef={tableRef}
-                    columns={[
-                      {
-                        title: 'Avatar',
-                        field: 'avatar',
-                        render: rowData => (
-                          <img
-                            style={{ height: 36, borderRadius: '50%' }}
-                            src={rowData.avatar}
-                          />
-                        ),
-                        headerStyle: {
-                            backgroundColor: '#039be5',
-                          },
-                      },
-                      { title: 'Id', field: 'id' },
-                      { title: 'First Name', field: 'first_name' },
-                      { title: 'Last Name', field: 'last_name' },
-                    ]}
-                    data={query =>
-                        new Promise((resolve, reject) => {
-                          let url = 'https://reqres.in/api/users?'
-                          url += 'per_page=' + query.pageSize
-                          url += '&page=' + (query.page + 1)
-                          fetch(url)
-                            .then(response => response.json())
-                            .then(result => {
-                              resolve({
-                                data: result.data,
-                                page: result.page - 1,
-                                totalCount: result.total,
-                              })
-                            })
-                        })
-                      }
-                    options={{
-                        search: false,
-                        icon: 'refresh',
-                        tooltip: 'Refresh Data',
-                        isFreeAction: true,
-                        headerStyle: {
-                            backgroundColor: '#039be5',
-                          },
-                        onClick: () => tableRef.current && tableRef.current.onQueryChange(),
-                    }}
-                />
-            </div>
-        </React.Fragment>
-    );
+  const { data } = useDemoData({
+    dataSet: "",
+    rowLength: 100,
+    maxColumns: 6
+  });
+
+  // const classes = useStyles();
+  const [value, setValue] = React.useState({});
+  const [page, setPage] = React.useState(0);
+  const [rows, setRows] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+
+  const handlePageChange = (params) => {
+    // console.log(params);
+    setPage(params.page);
+  };
+
+  React.useEffect(() => {
+    let active = true;
+
+    (async () => {
+      setLoading(true);
+      const newRows = await loadServerRows(page, data);
+      // console.log(newRows);
+      if (!active) {
+        return;
+      }
+
+      setRows(newRows);
+      setLoading(false);
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [page, data]);
+  // console.log(data);
+  return (
+    <React.Fragment>
+      <BottomNavigation
+        value={value}
+        onChange={(event, newValue) => {
+          const  result =  Fetch(newValue);
+          console.log(result);
+          console.log(newValue);
+          setValue(newValue);
+        }}
+        showLabels
+      >
+        <BottomNavigationAction label="List1" value="List1" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="List2" value="List2" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="List3" value="List3" icon={<LocationOnIcon />} />
+      </BottomNavigation>
+      <div style={{ height: 500, width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={data.columns}
+          pagination
+          pageSize={5}
+          rowCount={100}
+          paginationMode="server"
+          onPageChange={handlePageChange}
+          loading={loading}
+        />
+      </div>
+    </React.Fragment>
+  );
 };
 
 export default Hof;
 
-//test case https://codesandbox.io/s/material-demo-forked-vnkp9?file=/demo.js
-//source https://material-table.com/#/docs/get-started and for buttons  https://codesandbox.io/s/2zii7?file=/demo.js:607-1023
+//test case https://codesandbox.io/s/material-demo-forked-mugv7?file=/demo.js
+

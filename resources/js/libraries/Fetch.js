@@ -1,8 +1,9 @@
 import ky from 'ky';
 
-const useFetchApi = async (url, params) => {
+const Fetch = async (url, params) => {
+   const methodType =  (!params.method ? 'get' : params.method);
     const options = {
-        method: params.method,
+        method: methodType,
         body: JSON.stringify(
             params.data
         ),
@@ -22,4 +23,4 @@ const useFetchApi = async (url, params) => {
 
 }
 
-export default useFetchApi;
+export default Fetch;
