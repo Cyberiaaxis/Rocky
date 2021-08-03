@@ -5,6 +5,7 @@ import ProgressBar from "../components/ProgressBar";
 import "../styles/menuStyle.scss";
 import Stats from "../components/Stats";
 import Hof from "../components/Hof";
+import Inventory from "../components/Inventory";
 // https://codesandbox.io/s/material-demo-forked-9ot1z?file=/menuStyle.css
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -50,6 +51,10 @@ const topMenuBar = [
     {
         label: "About",
         href: "about",
+    },
+    {
+        label: "Inventory",
+        href: "inventory",
     },
     {
         label: "Products",
@@ -128,7 +133,7 @@ const Dashboard = () => {
 
     const pages = {
         hof: <Hof />,        
-        about: <Stats />,
+        inventory: <Inventory />,
         home: <Stats />,
         profile: <Stats />,
         account: "account",
