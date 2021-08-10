@@ -5,6 +5,7 @@ import ProgressBar from "../components/ProgressBar";
 import "../styles/menuStyle.scss";
 import Stats from "../components/Stats";
 import Hof from "../components/Hof";
+import Gym from "../components/Gym";
 import Inventory from "../components/Inventory";
 // https://codesandbox.io/s/material-demo-forked-9ot1z?file=/menuStyle.css
 const useStyles = makeStyles((theme) => ({
@@ -73,8 +74,8 @@ const topMenuBar = [
                 ],
             },
             {
-                label: "Monitors",
-                href: "monitors",
+                label: "Gym",
+                href: "gym",
             },
             {
                 label: "Printers",
@@ -143,6 +144,7 @@ const Dashboard = () => {
         city: null,
         market: null,
         crimes: null,
+        gym: <Gym />,
     };
 console.log(pages[page]);
     return (
