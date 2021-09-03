@@ -7,6 +7,7 @@ import Stats from "../components/Stats";
 import Hof from "../components/Hof";
 import Gym from "../components/Gym";
 import Inventory from "../components/Inventory";
+import Profile from "../components/Profile";
 // https://codesandbox.io/s/material-demo-forked-9ot1z?file=/menuStyle.css
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -50,8 +51,8 @@ const topMenuBar = [
         href: "dashboard",
     },
     {
-        label: "About",
-        href: "about",
+        label: "Profile",
+        href: "profile",
     },
     {
         label: "Inventory",
@@ -136,7 +137,7 @@ const Dashboard = () => {
         hof: <Hof />,        
         inventory: <Inventory />,
         home: <Stats />,
-        profile: <Stats />,
+        profile: <Profile />,
         account: "account",
         logout: "Logout",
         stats: <Stats />,
