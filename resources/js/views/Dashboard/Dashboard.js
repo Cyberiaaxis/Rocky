@@ -11,7 +11,9 @@ class Home extends Component {
   }
 // check if user is authenticated and storing authentication data as states if true
   componentWillMount() {
+    
     let state = localStorage["appState"];
+    console.log(state);
     if (state) {
       let AppState = JSON.parse(state);
       this.setState({ isLoggedIn: AppState.isLoggedIn, user: AppState.user });

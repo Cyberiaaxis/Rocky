@@ -11,32 +11,32 @@ const Routes = () => {
     const [userId, setUserId] = useState({});
     const [accessToken, setAccessToken] = useState({});
 
-    useEffect(() => {
-        function checkUserData() {
-            const userDetails = localStorage.getItem('userDetails');
-            console.log(userDetails);
-            if(userDetails){
-                const {userId, accessToken, loggedIn} = JSON.parse(userDetails);
-                setLoggedIn(loggedIn);
-                setUserId(userId);
-                setAccessToken(accessToken);
-            };      
-      }
-      checkUserData();
-    }, [])
-
+    // useEffect(() => {
+    //     function checkUserData() {
+    //         const userDetails = localStorage.getItem('userDetails');
+    //         console.log(userDetails);
+    //         if(userDetails){
+    //             const {userId, accessToken, loggedIn} = JSON.parse(userDetails);
+    //             setLoggedIn(loggedIn);
+    //             setUserId(userId);
+    //             setAccessToken(accessToken);
+    //         };      
+    //   }
+    //   checkUserData();
+    // }, [])
+    console.log("loggedIn");
     console.log(loggedIn);
 
     return (<>
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact={true}>
-                {/* <App /> */}
-                 {loggedIn ? <Dashboard id={userId} />   : <App/>}
+                <App />
+                 {/* {loggedIn ? <Dashboard id={userId} />   : <App/>} */}
                 </Route>
                 <Route path="/dashboard">
                 {/* <Dashboard /> */}
-                    {loggedIn ? <Dashboard id={userId} /> : <App />}
+                    {/* {loggedIn ? <Dashboard id={userId} /> : <App />} */}
                 </Route>
                 <Route path="/attack">
                     {/* <Attack /> */}
