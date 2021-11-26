@@ -1,5 +1,6 @@
-import {useState, useEffect} from "react";
+import {useState, useMemo} from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 import Dashboard from "../pages/Dashboard";
 import Attack from "../pages/Attack";
 import App from "../pages/App";
@@ -7,28 +8,11 @@ import App from "../pages/App";
 import Login from "../components/LoginForm";
 // localStorage.clear();
 const Routes = () => {
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [userId, setUserId] = useState({});
-    const [accessToken, setAccessToken] = useState({});
-
-    // useEffect(() => {
-    //     function checkUserData() {
-    //         const userDetails = localStorage.getItem('userDetails');
-    //         console.log(userDetails);
-    //         if(userDetails){
-    //             const {userId, accessToken, loggedIn} = JSON.parse(userDetails);
-    //             setLoggedIn(loggedIn);
-    //             setUserId(userId);
-    //             setAccessToken(accessToken);
-    //         };      
-    //   }
-    //   checkUserData();
-    // }, [])
-    console.log("loggedIn");
-    console.log(loggedIn);
-
+    const [user, setUser] = useState(null);
+    const values = useMemo(() => ({ user, setUser }), [user, setUser]);
     return (<>
         <BrowserRouter>
+        <AuthContext.Provider value={values}>
             <Switch>
                 <Route path="/" exact={true}>
                 <App />
@@ -43,6 +27,7 @@ const Routes = () => {
                 </Route>
                 {/* <Route path="/chat" component={Chat} /> */}
             </Switch>
+            </AuthContext.Provider>
         </BrowserRouter>
     </>);
 

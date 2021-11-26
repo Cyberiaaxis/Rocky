@@ -8,6 +8,7 @@ import Hof from "../components/Hof";
 import Gym from "../components/Gym";
 import Inventory from "../components/Inventory";
 import Profile from "../components/Profile";
+import { useAuth } from "../libraries/AuthContext";
 // https://codesandbox.io/s/material-demo-forked-9ot1z?file=/menuStyle.css
 const useStyles = makeStyles((theme) => ({
     root: {

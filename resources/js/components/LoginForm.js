@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "../styles/LoginForm.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey, faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
@@ -7,8 +7,10 @@ import Fetch from "../libraries/Fetch";
 import Modal from "./Modal";
 import RegistrationForm from "./RegistrationForm";
 import { useHistory, Link } from "react-router-dom";
+import { AuthContext } from "../libraries/AuthContext";
 
 const LoginForm = () => {
+    const { setUser } = useContext(AuthContext);
     const {
         register,
         setError,
@@ -16,7 +18,6 @@ const LoginForm = () => {
         handleSubmit,
         clearErrors,
     } = useForm();
-    const AuthStateContext = React.createContext();
     const history = useHistory();
 
 
@@ -24,14 +25,13 @@ const LoginForm = () => {
         const result = await Fetch("auth/login", { method: "post", data });
 
         if (result.user) {
-            const resultUser = {
+            const userDetails = {
                 userId: result.user.id,
                 accessToken: result.access_token,
                 loggedIn: true,
             };
-
-            // localStorage.setItem("userDetails", JSON.stringify(resultUser));
-            // history.push("/dashboard");
+            setUser(userDetails);
+            history.push("/Dashboard");
         } else {
             for (const [fieldName, errors] of Object.entries(result.errors)) {
                 setError(fieldName, {
@@ -70,7 +70,7 @@ const LoginForm = () => {
 
                             <input type="password" placeholder="Password" className="form-control" {...register("password", { required: true })} />
                         </div>
-                        \{" "}
+                        {" "}
                     </div>
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary">
@@ -99,3 +99,6 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+
+// https://codesandbox.io/s/react-router-with-authentication-original-forked-ojyht?file=/index.js
