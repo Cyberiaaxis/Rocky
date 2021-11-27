@@ -6,21 +6,21 @@ import Attack from "../pages/Attack";
 import App from "../pages/App";
 // import Chat from "../components/Chat";
 import Login from "../components/LoginForm";
-// localStorage.clear();
+
 const Routes = () => {
     const [user, setUser] = useState(null);
     const values = useMemo(() => ({ user, setUser }), [user, setUser]);
+    console.log(user);
     return (<>
         <BrowserRouter>
         <AuthContext.Provider value={values}>
             <Switch>
                 <Route path="/" exact={true}>
                 <App />
-                 {/* {loggedIn ? <Dashboard id={userId} />   : <App/>} */}
+                     {<App/>}
                 </Route>
                 <Route path="/dashboard">
-                {/* <Dashboard /> */}
-                    {/* {loggedIn ? <Dashboard id={userId} /> : <App />} */}
+                     {<Dashboard/>}
                 </Route>
                 <Route path="/attack">
                     {/* <Attack /> */}

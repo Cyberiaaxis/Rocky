@@ -31,7 +31,7 @@ const LoginForm = () => {
                 loggedIn: true,
             };
             setUser(userDetails);
-            history.push("/Dashboard");
+            history.push("/dashboard");
         } else {
             for (const [fieldName, errors] of Object.entries(result.errors)) {
                 setError(fieldName, {

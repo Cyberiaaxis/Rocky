@@ -6,9 +6,12 @@ import "../styles/menuStyle.scss";
 import Stats from "../components/Stats";
 import Hof from "../components/Hof";
 import Gym from "../components/Gym";
+import Crimes from "../components/Crimes";
 import Inventory from "../components/Inventory";
 import Profile from "../components/Profile";
-import { useAuth } from "../libraries/AuthContext";
+// import { useAuth } from "../libraries/AuthContext";
+
+
 // https://codesandbox.io/s/material-demo-forked-9ot1z?file=/menuStyle.css
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -56,8 +59,8 @@ const topMenuBar = [
         href: "profile",
     },
     {
-        label: "Inventory",
-        href: "inventory",
+        label: "Crimes",
+        href: "crimes",
     },
     {
         label: "Products",
@@ -96,8 +99,6 @@ const topMenuBar = [
 const Dashboard = () => {
     const [page, setPage] = useState("dashboard");
     const classes = useStyles();
-
-
 
     const MenuItem = ({ item }) => {
         return (
@@ -145,7 +146,7 @@ const Dashboard = () => {
         explore: null,
         city: null,
         market: null,
-        crimes: null,
+        crimes: <Crimes />,
         gym: <Gym />,
     };
 console.log(pages[page]);
