@@ -164,3 +164,5 @@ export default function Crimes() {
         </div>
     );
 }
+
+// https://stackblitz.com/edit/react-doprrk?file=src%2Fstyle.scss
