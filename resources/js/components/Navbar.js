@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
 // import logo from "../images/pulse.gif";
 import '../styles/Navbar.scss'
-import LoginForm from "./LoginForm";
+import LoginForm from "./Login";
 import Modal from "./Modal";
 
 

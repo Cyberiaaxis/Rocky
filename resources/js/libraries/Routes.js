@@ -1,36 +1,32 @@
-import {useState, useMemo} from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import {useState, useMemo, useContext, useReducer} from "react";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Outlet,
+    Route,
+    Link
+  } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import Dashboard from "../pages/Dashboard";
 import Attack from "../pages/Attack";
 import App from "../pages/App";
 // import Chat from "../components/Chat";
-import Login from "../components/LoginForm";
+import Login from "../components/Login";
 
-const Routes = () => {
-    const [user, setUser] = useState(null);
-    const values = useMemo(() => ({ user, setUser }), [user, setUser]);
-    console.log(user);
-    return (<>
-        <BrowserRouter>
-        <AuthContext.Provider value={values}>
-            <Switch>
-                <Route path="/" exact={true}>
-                <App />
-                     {<App/>}
-                </Route>
-                <Route path="/dashboard">
-                     {<Dashboard/>}
-                </Route>
-                <Route path="/attack">
-                    {/* <Attack /> */}
-                </Route>
-                {/* <Route path="/chat" component={Chat} /> */}
-            </Switch>
-            </AuthContext.Provider>
-        </BrowserRouter>
-    </>);
 
+const UserRoutes = () => {
+  const [user, setUser] = useState(null);
+  const values = useMemo(() => ({ user, setUser }), [user, setUser]);
+  if(user);
+  return (
+    <Router>
+        <AuthContext.Provider value={user}>
+          <Routes>
+            <Route path="/" element={<App />}/>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
+        </AuthContext.Provider>
+    </Router>
+  );
 };
-
-export default Routes;
+export default UserRoutes;

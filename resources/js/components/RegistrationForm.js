@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey, faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import { useForm } from 'react-hook-form';
 import Fetch from '../libraries/Fetch';
-import { useHistory } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import "../styles/RegistrationForm.scss";
 
 const RegistrationForm = () => {
     const { register, errors, handleSubmit, clearErrors } = useForm();
-    const history = useHistory();
+    const navigate = useNavigate();
     // const { error, result , api, loading} = useFetchApi();
     const url = 'register'
     const onSubmit = (data) => {

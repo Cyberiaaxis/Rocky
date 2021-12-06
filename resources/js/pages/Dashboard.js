@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { makeStyles, Paper, Box, Button, Grid, Avatar } from "@material-ui/core";
 import clsx from "clsx";
 import ProgressBar from "../components/ProgressBar";
@@ -9,7 +9,7 @@ import Gym from "../components/Gym";
 import Crimes from "../components/Crimes";
 import Inventory from "../components/Inventory";
 import Profile from "../components/Profile";
-// import { useAuth } from "../libraries/AuthContext";
+
 
 
 // https://codesandbox.io/s/material-demo-forked-9ot1z?file=/menuStyle.css
@@ -99,6 +99,7 @@ const topMenuBar = [
 const Dashboard = () => {
     const [page, setPage] = useState("dashboard");
     const classes = useStyles();
+
 
     const MenuItem = ({ item }) => {
         return (

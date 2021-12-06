@@ -43,7 +43,7 @@
         "react-google-charts": "^3.0.15",
         "react-hook-form": "^7.1.1",
         "react-marquee-master": "^1.4.5",
-        "react-router-dom": "^5.2.0",
+        "react-router-dom": "^6.0.2",
         "zustand": "^3.5.1"
     }
 }
