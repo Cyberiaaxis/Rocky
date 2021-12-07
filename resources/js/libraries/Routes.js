@@ -17,10 +17,10 @@ import Login from "../components/Login";
 const UserRoutes = () => {
   const [user, setUser] = useState(null);
   const values = useMemo(() => ({ user, setUser }), [user, setUser]);
-  if(user);
+  console.log(user);
   return (
     <Router>
-        <AuthContext.Provider value={user}>
+        <AuthContext.Provider value={values}>
           <Routes>
             <Route path="/" element={<App />}/>
             <Route path="/dashboard" element={<Dashboard />} />

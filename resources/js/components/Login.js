@@ -32,6 +32,7 @@ const Login = () => {
             setUser(userDetails);
             navigate("/dashboard");
         } else {
+
             for (const [fieldName, errors] of Object.entries(result.errors)) {
                 setError(fieldName, {
                     type: "manual",
