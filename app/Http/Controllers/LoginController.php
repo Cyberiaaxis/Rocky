@@ -116,14 +116,28 @@ class LoginController extends Controller
 
         $token->save();
 
-        return response()->json([
+        $userDetails = [
             'user' => $user,
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
             )->toDateTimeString()
-        ]);
+            ];
+        $request->session()->put('userDetails', $userDetails);
+        return response()->json($userDetails);
     }
+
+    /**
+     * Get the failed login response instance.
+     *
+     * @return loggedIn user session.
+     *
+     */
+    public function getUserBySession(Request $request)
+    {
+        return $request->session()->get('userDetails');
+    }
+
 
 }

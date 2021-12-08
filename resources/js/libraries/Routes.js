@@ -1,4 +1,4 @@
-import {useState, useMemo, useContext, useReducer} from "react";
+import React, {useState, useMemo, useContext, useReducer} from "react";
 import {
     BrowserRouter as Router,
     Routes,
@@ -11,20 +11,25 @@ import Dashboard from "../pages/Dashboard";
 import Attack from "../pages/Attack";
 import App from "../pages/App";
 // import Chat from "../components/Chat";
-import Login from "../components/Login";
-
+import AuthenticationGuard from "../libraries/AuthenticationGuard";
 
 const UserRoutes = () => {
   const [user, setUser] = useState(null);
   const values = useMemo(() => ({ user, setUser }), [user, setUser]);
-  console.log(user);
+  // console.log(user);
   return (
     <Router>
         <AuthContext.Provider value={values}>
-          <Routes>
-            <Route path="/" element={<App />}/>
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Routes>
+        <Routes>
+          <Route path="/" element={<App />}/>
+        </Routes>
+
+          <AuthenticationGuard>
+            <Routes>
+              <Route path="/" element={<App />}/>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+          </AuthenticationGuard>
         </AuthContext.Provider>
     </Router>
   );
