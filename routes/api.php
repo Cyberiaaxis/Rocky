@@ -11,9 +11,11 @@
 */
 $router->get('/topplayerlist', 'LandingPageController@listTopPlayer');
 $router->post('/auth/login', 'LoginController@login');
-$router->get('/loginBySession', 'LoginController@getUserBySession');
 $router->post('/register', 'RegistrationController@signup');
-$router->group(['middleware' => ['auth:api', 'verified']], function($router){
+
+
+$router->group(['middleware' => ['auth:sanctum', 'verified']], function($router){
+    $router->get('/loginBySession', 'LoginController@getUserBySession');
     $router->get('/home', 'HomeController@index');
 });
 

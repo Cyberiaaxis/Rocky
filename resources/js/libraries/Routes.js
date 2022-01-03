@@ -16,7 +16,7 @@ import AuthenticationGuard from "../libraries/AuthenticationGuard";
 const UserRoutes = () => {
   const [user, setUser] = useState(null);
   const values = useMemo(() => ({ user, setUser }), [user, setUser]);
-  // console.log(user);
+  // console.log(AuthenticationGuard);
   return (
     <Router>
         <AuthContext.Provider value={values}>
@@ -26,8 +26,7 @@ const UserRoutes = () => {
 
           <AuthenticationGuard>
             <Routes>
-              <Route path="/" element={<App />}/>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path={["/", "/dashboard"]} element={<Dashboard />} />
             </Routes>
           </AuthenticationGuard>
         </AuthContext.Provider>
