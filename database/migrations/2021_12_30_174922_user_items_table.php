@@ -13,7 +13,11 @@ class UserItemsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('user_items', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('item_id')->references('id')->on('items');
+            $table->primary(['user_id','item_id']);
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class UserItemsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('user_items');
     }
 }

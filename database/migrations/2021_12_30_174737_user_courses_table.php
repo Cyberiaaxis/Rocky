@@ -13,7 +13,11 @@ class UserCoursesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('user_courses', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('course_id')->references('id')->on('courses');
+            $table->primary(['user_id','job_id']);
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class UserCoursesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('job_users');
     }
 }

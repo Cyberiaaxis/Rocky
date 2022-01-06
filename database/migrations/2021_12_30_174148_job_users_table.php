@@ -13,7 +13,11 @@ class JobUsersTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('job_users', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('job_id')->references('id')->on('jobs');
+            $table->primary(['user_id','job_id']);
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class JobUsersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('job_users');
     }
 }

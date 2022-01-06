@@ -13,7 +13,11 @@ class UserRealEstatesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('user_real_estates', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('real_estates_id')->references('id')->on('real_estates');
+            $table->primary(['user_id','real_estates_id']);
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class UserRealEstatesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('user_real_estates');
     }
 }

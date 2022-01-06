@@ -13,7 +13,11 @@ class UserCrimesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('user_crimes', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('crime_id')->references('id')->on('crime');
+            $table->primary(['user_id','crime_id']);
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class UserCrimesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('user_crimes');
     }
 }

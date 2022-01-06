@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UserTravelsTable extends Migration
+class UserEquipmentSlotsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class UserTravelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_travels', function (Blueprint $table) {
+        Schema::create('user_equipment_slots', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->unique();
-            $table->integer('location_id');       
-            $table->integer('times');       
+            $table->integer('primary');
+            $table->integer('secondary');
+            $table->integer('armor');
         });
     }
 
@@ -27,6 +28,6 @@ class UserTravelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_travels');
+        Schema::dropIfExists('user_real_estates');
     }
 }
