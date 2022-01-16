@@ -17,6 +17,7 @@ class CrimeMessagesTable extends Migration
             $table->bigIncrements('id');
             $table->string('message_type');
             $table->longText('message');
+            $table->foreignId('crime_id');
             $table->foreign('crime_id')->references('id')->on('crimes');
         });
     }

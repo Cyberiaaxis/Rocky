@@ -14,6 +14,7 @@ class UserEquipmentSlotsTable extends Migration
     public function up()
     {
         Schema::create('user_equipment_slots', function (Blueprint $table) {
+            $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users')->unique();
             $table->integer('primary');
             $table->integer('secondary');

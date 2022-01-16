@@ -14,8 +14,10 @@ class UserCrimesTable extends Migration
     public function up()
     {
         Schema::create('user_crimes', function (Blueprint $table) {
+            $table->foreignId('user_id');
+            $table->foreignId('crime_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('crime_id')->references('id')->on('crime');
+            $table->foreign('crime_id')->references('id')->on('crimes');
             $table->primary(['user_id','crime_id']);
         });
     }

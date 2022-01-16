@@ -14,6 +14,7 @@ class UserStatsTable extends Migration
     public function up()
     {
         Schema::create('user_stats', function (Blueprint $table) {
+            $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users')->unique();
             $table->bigInteger('strength');
             $table->bigInteger('defense');

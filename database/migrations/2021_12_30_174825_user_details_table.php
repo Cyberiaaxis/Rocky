@@ -14,6 +14,7 @@ class UserDetailsTable extends Migration
     public function up()
     {
         Schema::create('user_details', function (Blueprint $table) {
+            $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamp('jail');
             $table->timestamp('hospital');

@@ -14,6 +14,8 @@ class JobUsersTable extends Migration
     public function up()
     {
         Schema::create('job_users', function (Blueprint $table) {
+            $table->foreignId('user_id');
+            $table->foreignId('job_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('job_id')->references('id')->on('jobs');
             $table->primary(['user_id','job_id']);

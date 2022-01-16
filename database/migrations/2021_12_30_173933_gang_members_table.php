@@ -14,6 +14,8 @@ class GangMembersTable extends Migration
     public function up()
     {
         Schema::create('gang_members', function (Blueprint $table) {
+            $table->foreignId('user_id');
+            $table->foreignId('gang_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('gang_id')->references('id')->on('gangs');
             $table->primary(['user_id', 'gang_id']);

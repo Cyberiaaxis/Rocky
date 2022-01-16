@@ -26,7 +26,7 @@ const UserRoutes = () => {
 
           <AuthenticationGuard>
             <Routes>
-              <Route path={["/", "/dashboard"]} element={<Dashboard />} />
+              <Route path={["/dashboard"]} element={<Dashboard />} />
             </Routes>
           </AuthenticationGuard>
         </AuthContext.Provider>

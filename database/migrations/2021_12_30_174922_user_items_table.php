@@ -14,6 +14,8 @@ class UserItemsTable extends Migration
     public function up()
     {
         Schema::create('user_items', function (Blueprint $table) {
+            $table->foreignId('user_id');
+            $table->foreignId('item_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('item_id')->references('id')->on('items');
             $table->primary(['user_id','item_id']);

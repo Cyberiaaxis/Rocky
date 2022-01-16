@@ -18,6 +18,7 @@ class ItemsTable extends Migration
             $table->string('name')->unique();
             $table->integer('price');
             $table->longText('description');
+            $table->foreignId('item_type_id');
             $table->foreign('item_type_id')->references('id')->on('item_types');
         });
     }

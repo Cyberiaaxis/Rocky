@@ -12,10 +12,10 @@ const AuthenticationGuard = () => {
         async function getUserBySession() {
             if (!user) {
                 console.log("AuthenticationGuard-user in !user");
-                console.log(user);
-                const result = await Fetch("loginBySession", { method: "get" });
-                console.log("AuthenticationGuard-user result");
-                console.log(result);                
+                // console.log(user);
+                // const result = await Fetch("loginBySession", { method: "get" });
+                // console.log("AuthenticationGuard-user result");
+                // console.log(result);                
                 // setUser(result);
             }
         }

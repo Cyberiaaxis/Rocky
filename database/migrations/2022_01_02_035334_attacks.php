@@ -14,7 +14,7 @@ class Attacks extends Migration
     public function up()
     {
         Schema::create('attacks', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->unique();
+            $table->foreignId('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('attacks');
             $table->bigInteger('attacks_success');

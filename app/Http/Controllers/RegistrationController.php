@@ -41,6 +41,7 @@ class RegistrationController extends Controller
         $user->save();
 
         return response()->json([
+            'status' => true,
             'message' => 'Successfully created user!'
         ], 201);
     }

@@ -1,37 +1,103 @@
-import React, { Component } from "react";
-import { Link } from 'react-router-dom';
-import logo from '../images/logo.svg';
+import React, { useState, Fragment } from "react";
+// import { Link } from 'react-router-dom';
+import logo from "../images/logo.svg";
 // import logo from "../images/pulse.gif";
-import '../styles/Navbar.scss'
-import LoginForm from "./Login";
-import Modal from "./Modal";
-
+import "../styles/Navbar.scss";
+import Model from "./Model";
+import Login from "./Login";
+import Home from "./Home";
+import About from "./About";
+import Contact from "./Contact";
+import Forums from "./Forums";
 
 export default function Navbar() {
-// const pages = (pageName) => {
-//     switch(pageName) {
-//     case "aboutus":   return <Modal body='Screens' id='images'/>;
-//     case "screens": return <Modal body='Contact Us' id='contactus'/>;
-//     case "contactus":  return <Modal body='About Us' id='aboutus'/>;
-//     default:  return <Modal body='Home' id='home'/>;
-//     }
-// }
+    const [homeModal, setHomeModal] = useState(false);
+    const [aboutModal, setAboutModal] = useState(false);
+    const [contactModal, setContactModal] = useState(false);
+    const [forumsModal, setForumsModal] = useState(false);
 
     return (
-        <div className="navbar bg-transparent fixed-top">
-            <div className="logo"> <img src={logo} alt='logo' /> </div>
-            <ul className="menu">
-                <li><Link to='/' data-toggle="modal" data-target='#home' className="nav-link">Home</Link></li>
-                <li><Link to='/' data-toggle="modal" data-target='#screens' className="nav-link">Screens</Link></li>
-                <li><Link to='/' data-toggle="modal" data-target='#aboutus' className="nav-link">AboutUs</Link></li>
-                <li><Link to='/' data-toggle="modal" data-target='#contactus' className="nav-link">Contact Us</Link></li>
-            </ul>
-            <LoginForm /> 
-            
-            <Modal body={<span>Home</span>} id='home'/>
-            <Modal body={<span>Screenshot</span>} id='screens' />
-            <Modal body={<span>About Us</span>} id='aboutus' />
-            <Modal body={<span>Contact Us</span>} id='contactus' />
-        </div>
-    )
+        <Fragment>
+            <div className="navbar bg-transparent fixed-top">
+                <div className="logo">
+                    <img src={logo} alt="logo" />
+                </div>
+                <ul className="menu">
+                    <li>
+                        <span
+                            className="nav-link"
+                            onClick={() => {
+                                setHomeModal(true);
+                                setAboutModal(false);
+                                setContactModal(false);
+                                setForumsModal(false);
+                            }}
+                        >
+                            Home
+                        </span>
+                    </li>
+                    <li>
+                        <span
+                            className="nav-link"
+                            onClick={() => {
+                                setAboutModal(true);
+                                setHomeModal(false);
+                                setContactModal(false);
+                                setForumsModal(false);
+                            }}
+                        >
+                            About Us
+                        </span>
+                    </li>
+                    <li>
+                        <span
+                            className="nav-link"
+                            onClick={() => {
+                                setContactModal(true);
+                                setHomeModal(false);
+                                setAboutModal(false);
+                                setForumsModal(false);
+                            }}
+                        >
+                            Contact Us
+                        </span>
+                    </li>
+                    <li>
+                        <span
+                            className="nav-link"
+                            onClick={() => {
+                                setForumsModal(true);
+                                setContactModal(false);
+                                setHomeModal(false);
+                                setAboutModal(false);
+                            }}
+                        >
+                            {" "}
+                            Forums{" "}
+                        </span>
+                    </li>
+                </ul>
+                <Login />
+            </div>
+            {homeModal ? (
+                <Model title="Home" onCancel={() => setHomeModal(false)}>
+                    <Home />
+                </Model>
+            ) : aboutModal ? (
+                <Model title="About Us" onCancel={() => setAboutModal(false)}>
+                    <About />
+                </Model>
+            ) : contactModal ? (
+                <Model title="Contact Us" onCancel={() => setContactModal(false)}>
+                    <Contact />
+                </Model>
+            ) : (
+                forumsModal && (
+                    <Model title="Forums" onCancel={() => setForumsModal(false)}>
+                        <Forums />
+                    </Model>
+                )
+            )}
+        </Fragment>
+    );
 }

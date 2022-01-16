@@ -4,13 +4,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey, faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import Fetch from "../libraries/Fetch";
-import Modal from "./Modal";
+import Model from "./Model";
 import RegistrationForm from "./RegistrationForm";
-import { useNavigate, Link } from 'react-router-dom';
+import ForgetPassword from "./ForgetPassword";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../libraries/AuthContext";
 
 const Login = () => {
     const { user, setUser } = useContext(AuthContext);
+    const [showRegistrationModal, setRegistrationModal] = useState(false);
+    const [showForgetModal, setForgetModal] = useState(false);
+    const handleOK = (event) => {
+        console.log(event);
+    };
+
     const {
         register,
         setError,
@@ -32,7 +39,6 @@ const Login = () => {
             setUser(userDetails);
             navigate("/dashboard");
         } else {
-
             for (const [fieldName, errors] of Object.entries(result.errors)) {
                 setError(fieldName, {
                     type: "manual",
@@ -40,18 +46,22 @@ const Login = () => {
                 });
             }
 
-        setTimeout(() => {clearErrors()}, 5000); 
+            setTimeout(() => {
+                clearErrors();
+            }, 5000);
         }
     };
-    // console.log(errors.email);
+
     return (
         <>
             <div>
-                <p className="top">
-                    <Link to="/" data-toggle="modal" data-target="#forget">
-                        Recover Account
-                    </Link>
-                </p>
+                <span className="top" onClick={() => {
+                    setForgetModal(true);
+                    setRegistrationModal(false);
+                    }}>
+                    Recover Account
+                </span>
+
                 <form className="form-inline" method="post" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
                         <div className="input-group">
@@ -70,7 +80,6 @@ const Login = () => {
 
                             <input type="password" placeholder="Password" className="form-control" {...register("password", { required: true })} />
                         </div>
-                        {" "}
                     </div>
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary">
@@ -78,27 +87,30 @@ const Login = () => {
                         </button>
                     </div>
                 </form>
-                <p className="bottom">
-                    <Link to="/" data-toggle="modal" data-target="#registration">
-                        Create Account
-                    </Link>
-                </p>
+                <span className="bottom" onClick={() => {
+                    setRegistrationModal(true)
+                    setForgetModal(false);
+                    }}>
+                    Join Us
+                </span>
                 {errors.email && <p>{errors.email.message}</p>}
             </div>
-            <Modal body={<span>Forget</span>} id="forget" />
-            <Modal
-                body={
-                    <span>
-                        <RegistrationForm />
-                    </span>
-                }
-                id="registration"
-            />
+
+            {showRegistrationModal ? (
+                <Model title="Singup" onCancel={() => setRegistrationModal(false)}>
+                    <RegistrationForm onOK={handleOK} />
+                </Model>
+            ) : (
+                showForgetModal && (
+                    <Model title="Forget Password" onCancel={() => setForgetModal(false)}>
+                        <ForgetPassword />
+                    </Model>
+                )
+            )}
         </>
     );
 };
 
 export default Login;
-
 
 // https://codesandbox.io/s/react-router-with-authentication-original-forked-ojyht?file=/index.js
