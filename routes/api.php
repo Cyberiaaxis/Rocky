@@ -12,10 +12,10 @@
 $router->get('/topplayerlist', 'LandingPageController@listTopPlayer');
 $router->post('/auth/login', 'LoginController@login');
 $router->post('/register', 'RegistrationController@signup');
-
+// $router->get('/loginBySession', 'LoginController@getUserBySession');
 
 $router->group(['middleware' => ['auth:sanctum', 'verified']], function($router){
-    $router->get('/loginBySession', 'LoginController@getUserBySession');
+
     $router->get('/home', 'HomeController@index');
 });
 

@@ -9,7 +9,7 @@ import RegistrationForm from "./RegistrationForm";
 import ForgetPassword from "./ForgetPassword";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../libraries/AuthContext";
-import { ModalContext } from "../libraries/ModalContext";
+// import { ModalContext } from "../libraries/ModalContext";
 
 const Login = () => {
     const { user, setUser } = useContext(AuthContext);
