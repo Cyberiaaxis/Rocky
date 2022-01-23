@@ -9,11 +9,13 @@ import RegistrationForm from "./RegistrationForm";
 import ForgetPassword from "./ForgetPassword";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../libraries/AuthContext";
+import { ModalContext } from "../libraries/ModalContext";
 
 const Login = () => {
     const { user, setUser } = useContext(AuthContext);
-    const [showRegistrationModal, setRegistrationModal] = useState(false);
-    const [showForgetModal, setForgetModal] = useState(false);
+    // const [modalState, setModalState] = useState({modal: '', opened: false});    
+    const [registrationModal, setRegistrationModal] = useState(false);
+    const [forgetModal, setForgetModal] = useState(false);
     const handleOK = (event) => {
         console.log(event);
     };
@@ -58,7 +60,8 @@ const Login = () => {
                 <span className="top" onClick={() => {
                     setForgetModal(true);
                     setRegistrationModal(false);
-                    }}>
+                    setModal(forgetModal);
+                 }}>
                     Recover Account
                 </span>
 
@@ -90,18 +93,19 @@ const Login = () => {
                 <span className="bottom" onClick={() => {
                     setRegistrationModal(true)
                     setForgetModal(false);
+                    setModal(registrationModal);
                     }}>
                     Join Us
                 </span>
                 {errors.email && <p>{errors.email.message}</p>}
             </div>
 
-            {showRegistrationModal ? (
+            {registrationModal ? (
                 <Model title="Singup" onCancel={() => setRegistrationModal(false)}>
                     <RegistrationForm onOK={handleOK} />
                 </Model>
             ) : (
-                showForgetModal && (
+                forgetModal && (
                     <Model title="Forget Password" onCancel={() => setForgetModal(false)}>
                         <ForgetPassword />
                     </Model>

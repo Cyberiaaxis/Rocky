@@ -24,6 +24,7 @@ export default function Navbar() {
                 </div>
                 <ul className="menu">
                     <li>
+                        <div>
                         <span
                             className="nav-link"
                             onClick={() => {
@@ -35,6 +36,7 @@ export default function Navbar() {
                         >
                             Home
                         </span>
+                        </div>
                     </li>
                     <li>
                         <span
@@ -78,8 +80,7 @@ export default function Navbar() {
                     </li>
                 </ul>
                 <Login />
-            </div>
-            {homeModal ? (
+                {homeModal ? (
                 <Model title="Home" onCancel={() => setHomeModal(false)}>
                     <Home />
                 </Model>
@@ -98,6 +99,8 @@ export default function Navbar() {
                     </Model>
                 )
             )}
+            </div>
+
         </Fragment>
     );
 }
