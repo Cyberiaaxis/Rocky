@@ -1,60 +1,43 @@
-import React, { useEffect, useState } from 'react'
-import ky from 'ky'
-import Marquee from 'react-marquee-master'
-import '../styles/Lists.scss'
-import Fetch from '../libraries/Fetch';
+import React, { useEffect, useState } from "react";
+import Marquee from "react-marquee-master";
+import "../styles/Lists.scss";
+import Fetch from "../libraries/Fetch";
 
 const Lists = () => {
-  const [status, setStatus] = useState('idle')
-  const [hasError, setErrors] = useState(false)
-  const [responseData, setResponseData] = useState(null)
+    const [responseData, setResponseData] = useState([]);
+    const [isScrolling, setIsScrolling] = useState(false);
 
-  const fetchData = async () => {
-    const  result =  await Fetch('topplayerlist');
-   console.log(result);
-    setErrors(false)
-    setStatus('fetching')
-    await ky('https://api.rockwood.test/api/topplayerlist').json()
-      .then((response) => {
-        // console.log(response?.length);
-        if (response?.length) {
-          setResponseData(response)
-          // console.log('setResponseData: ', response)
-        }
-        setStatus('fetched')
-      })
-      .catch((error) => {
-        setStatus('failed')
-        setErrors(error)
-        // console.error(error)
-      })
-  }
+    const fetchData = async () => {
+        const result = await Fetch("topplayerlist", { method: "get" });
+        setResponseData(result);
+    };
 
-  useEffect(() => {
-    fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    const listItems = responseData.map((data) => <li>{data}</li>);
 
-  return (
-    <>
-      <div height="300px" className="player-left">
-        <p className="listHeading">Menu Heading</p>
-        {responseData?.length ? (
-          <Marquee  marqueeItems={responseData} />
-        ) : (
-          <div>loading...</div>
-        )}
-      </div>
-      ,
-      <div height="300px" className="player-right">
-        <p className="listHeading">Menu Heading</p>
-        {responseData?.length ? (
-          <Marquee  marqueeItems={responseData} />
-        ) : (
-          <div>loading...</div>
-        )}
-      </div>
-    </>
-  )
-}
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        const id = setTimeout(() => {
+            setIsScrolling((scrolling) => !scrolling);
+            console.log("looping timer");
+        }, 5000);
+        return () => clearTimeout(id);
+    }, [isScrolling]);
+
+    return (
+        <>
+            <div height="300px" className="player-left">
+                <p className="listHeading">Menu Heading</p>
+                {isScrolling ? <Marquee delay="40" marqueeItems={responseData} /> : <ul>{listItems}</ul>}
+            </div>
+            ,
+            <div height="300px" className="player-right">
+                <p className="listHeading">Menu Heading</p>
+                {isScrolling ? <Marquee delay="40" marqueeItems={responseData} /> : <ul>{listItems}</ul>}
+            </div>
+        </>
+    );
+};
 export default Lists;

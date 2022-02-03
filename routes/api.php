@@ -14,7 +14,7 @@ $router->post('/auth/login', 'LoginController@login');
 $router->post('/register', 'RegistrationController@signup');
 // $router->get('/loginBySession', 'LoginController@getUserBySession');
 
-$router->group(['middleware' => ['auth:sanctum', 'verified']], function($router){
+$router->group(['middleware' => ['auth:sanctum', 'verified', 'throttle:60,1']], function($router){
 
     $router->get('/home', 'HomeController@index');
 });

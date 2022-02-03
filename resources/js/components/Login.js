@@ -30,6 +30,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const onSubmit = async (data) => {
+        
         const result = await Fetch("auth/login", { method: "post", data });
 
         if (result.user) {
@@ -60,7 +61,7 @@ const Login = () => {
                 <span className="top" onClick={() => {
                     setForgetModal(true);
                     setRegistrationModal(false);
-                    setModal(forgetModal);
+                    // setModal(forgetModal);
                  }}>
                     Recover Account
                 </span>
@@ -93,7 +94,7 @@ const Login = () => {
                 <span className="bottom" onClick={() => {
                     setRegistrationModal(true)
                     setForgetModal(false);
-                    setModal(registrationModal);
+                    // setModal(registrationModal);
                     }}>
                     Join Us
                 </span>

@@ -12,6 +12,8 @@ const Fetch = async (url, params) => {
         headers: {
             'Accept': 'application/json',
             'Content-type': 'application/json; charset=UTF-8',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN': window.Laravel.csrfToken
         },
     };
     
