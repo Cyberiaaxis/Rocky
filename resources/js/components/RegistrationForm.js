@@ -3,7 +3,7 @@ import "../styles/RegistrationForm.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
-import Fetch from "../libraries/Fetch";
+import Http from "../libraries/Http";
 import { useNavigate, Link } from "react-router-dom";
 
 const RegistrationForm = (onOK) => {
@@ -24,7 +24,7 @@ const RegistrationForm = (onOK) => {
     }
     
     const onSubmit = async (data) => {
-        const result = await Fetch("register", { method: "post", data });
+        const result = Http("register", { method: "post", data });
 
          if(result.status){
             setMessage(result.message);

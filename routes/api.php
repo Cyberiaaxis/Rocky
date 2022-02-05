@@ -9,7 +9,8 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-$router->get('/topplayerlist', 'LandingPageController@listTopPlayer');
+$router->get('listRight', 'LandingPageController@listTopPlayer');
+$router->get('listLeft', 'LandingPageController@listTopPlayer');
 $router->post('/auth/login', 'LoginController@login');
 $router->post('/register', 'RegistrationController@signup');
 // $router->get('/loginBySession', 'LoginController@getUserBySession');

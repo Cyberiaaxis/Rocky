@@ -3,7 +3,7 @@ import "../styles/LoginForm.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey, faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
-import Fetch from "../libraries/Fetch";
+import Http from "../libraries/Http";
 import Model from "./Model";
 import RegistrationForm from "./RegistrationForm";
 import ForgetPassword from "./ForgetPassword";
@@ -29,9 +29,9 @@ const Login = () => {
     } = useForm();
     const navigate = useNavigate();
 
-    const onSubmit = async (data) => {
+    const onSubmit = (data) => {
         
-        const result = await Fetch("auth/login", { method: "post", data });
+        const result = Http("auth/login", { method: "post", data });
 
         if (result.user) {
             const userDetails = {
