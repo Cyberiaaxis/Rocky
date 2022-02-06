@@ -51,7 +51,7 @@ const Login = () => {
 
             setTimeout(() => {
                 clearErrors();
-            }, 5000);
+            }, 10000);
         }
     };
 

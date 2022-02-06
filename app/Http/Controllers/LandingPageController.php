@@ -14,7 +14,18 @@ class LandingPageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function listTopPlayer()
+    public function rightList()
+    {
+        $user = new User();
+    return response()->json($user->getTopPlayers());
+    }
+
+        /**
+     * Display a listing of the users.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function leftList()
     {
         $user = new User();
     return response()->json($user->getTopPlayers());

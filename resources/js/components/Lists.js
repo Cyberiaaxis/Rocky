@@ -6,10 +6,11 @@ import Http from "../libraries/Http";
 const Lists = () => {
     const [responseData, setResponseData] = useState([]);
     const [isScrolling, setIsScrolling] = useState(false);
+    const [listRight, listLeft] = responseData;
 
     const fetchData = async () => {
-        const response = await Promise.all([ 'listRight', 'listLeft' ].map(url => Http(url)));
-        return [...response.map(response => response.data)]
+        const response = await Promise.all(["rightList", "leftList"].map((url) => Http(url)));
+        return [...response.map((response) => response.data)];
     };
 
     useEffect(() => {
@@ -22,19 +23,17 @@ const Lists = () => {
         }, 5000);
         return () => clearTimeout(id);
     }, [isScrolling]);
-    // console.log(responseData[0].map());
-    const listItems = responseData.map((data, index) => console.log(data) );
 
     return (
         <>
             <div height="300px" className="player-left">
                 <p className="listHeading">Menu Heading</p>
-                {isScrolling ? <Marquee delay="80" marqueeItems={responseData} /> : <ul>{listItems}</ul>}
+                {isScrolling ? <Marquee delay="80" marqueeItems={listLeft} /> : <ul>{listLeft}</ul>}
             </div>
 
             <div height="300px" className="player-right">
                 <p className="listHeading">Menu Heading</p>
-                {isScrolling ? <Marquee delay="80" marqueeItems={responseData} /> : <ul>{listItems}</ul>}
+                {isScrolling ? <Marquee delay="80" marqueeItems={listRight} /> : <ul>{listRight}</ul>}
             </div>
         </>
     );
