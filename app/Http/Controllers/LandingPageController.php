@@ -17,7 +17,8 @@ class LandingPageController extends Controller
     public function rightList()
     {
         $user = new User();
-    return response()->json($user->getTopPlayers());
+        $data = ["data" => $user->getTopPlayers()];
+    return response()->json($data);
     }
 
         /**
@@ -28,7 +29,8 @@ class LandingPageController extends Controller
     public function leftList()
     {
         $user = new User();
-    return response()->json($user->getTopPlayers());
+        $data = ["data" => $user->getTopPlayers()];
+    return response()->json($data);
     }
 
     /**

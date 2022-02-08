@@ -10,32 +10,33 @@ const Lists = () => {
 
     const fetchData = async () => {
         const response = await Promise.all(["rightList", "leftList"].map((url) => Http(url)));
-        return [...response.map((response) => response.data)];
+    return [...response.map((response) => response.data)];
     };
 
     useEffect(() => {
-        fetchData().then((data) => console.log(data) || setResponseData(data));
+        fetchData().then((data) => setResponseData(data));
     }, []);
 
     useEffect(() => {
         const id = setTimeout(() => {
             setIsScrolling((scrolling) => !scrolling);
-        }, 5000);
-        return () => clearTimeout(id);
+        }, 10000);
+    return () => clearTimeout(id);
     }, [isScrolling]);
 
     return (
         <>
             <div height="300px" className="player-left">
                 <p className="listHeading">Menu Heading</p>
-                {isScrolling ? <Marquee delay="80" marqueeItems={listLeft} /> : <ul>{listLeft}</ul>}
+                {listLeft && <Marquee delay={isScrolling ? "40" : "10000" } marqueeItems={listLeft.data} />}
             </div>
 
             <div height="300px" className="player-right">
                 <p className="listHeading">Menu Heading</p>
-                {isScrolling ? <Marquee delay="80" marqueeItems={listRight} /> : <ul>{listRight}</ul>}
+                {listRight && <Marquee delay={isScrolling ? "40" : "10000" } marqueeItems={listRight.data} />}
             </div>
         </>
     );
 };
+
 export default Lists;
